@@ -494,10 +494,7 @@ nav a:hover {
     position: absolute;
     inset: 0;
     background: 
-        linear-gradient(
-            rgba(10, 14, 26, 0.65),
-            rgba(10, 14, 26, 0.85)
-        ),
+     
         url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80') center/cover no-repeat;
     background-attachment: fixed;
     z-index: 0;
@@ -1571,14 +1568,15 @@ footer {
 @media (max-width: 480px) {
     /* Hero com posição mais ajustada para telas pequenas */
     .hero::before {
-        background-position:  center;
-        background-size: cover;
+        background-position:  top;
+        background-size: contain;
+        background-repeat: repeat;
         background-image: 
             linear-gradient(
                 rgba(10, 14, 26, 0.80),
-                rgba(10, 14, 26, 0.92)
+                rgba(10, 14, 26, 0.5)
             ),
-            url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80');
+            url('https://images.unsplash.com/photo-1599351431529-5a74f50ef2e7?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     }
 
     .hero-text h1 {
