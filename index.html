@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FLASH | Barbershop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header id="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">FLASH<span>.</span><small>BARBERSHOP</small></a>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">A Flash</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                    <li><a href="agendamento.html" class="nav-btn">Agendar</a></li>
+                    <li><a href="sistema.html" class="nav-btn-outline">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-grid">
+            <div class="hero-text hidden">
+                <span class="badge"><span class="dot"></span>Corte & Confiança</span>
+                <h1><span class="line-1">Corte &</span><span class="line-2">Confiança</span></h1>
+                <p>A barbearia que respira tradição. Cortes precisos, barbas impecáveis e um atendimento que faz a diferença.</p>
+                <div class="hero-buttons">
+                    <a href="agendamento.html" class="btn btn-primary">Agendar Horário</a>
+                    <a href="#services" class="btn btn-outline">Explorar</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat"><h3>12</h3><p>Anos de Estrada</p></div>
+                    <div class="stat"><h3>4.8★</h3><p>Avaliação</p></div>
+                    <div class="stat"><h3>2k</h3><p>Clientes</p></div>
+                </div>
+            </div>
+            <div class="hero-image hidden delay-2">
+                <div class="image-wrapper">
+                    <div class="tattoo-frame"></div>
+                    <div class="tattoo-frame"></div>
+                    <img src="https://plus.unsplash.com/premium_photo-1661645788141-8196a45fb483?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="FLASH Barbershop" />
+                    <div class="floating-card">
+                        <div class="icon-box"><i class="fas fa-scissors"></i></div>
+                        <div class="info"><h4>Master Barber</h4><p>Especialista em cortes clássicos</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-header hidden">
+                <div><span class="section-label"><span class="diamond"></span>Serviços</span><h2 class="section-title">O que <span class="highlight">fazemos</span></h2></div>
+                <p class="section-sub" style="max-width:400px;">Cada serviço é feito com precisão e respeito pela tradição da barbearia.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card hidden delay-1">
+                    <span class="number">01</span><span class="icon"><i class="fas fa-cut"></i></span>
+                    <h3>Corte Clássico</h3><p>Tesoura e pente com acabamento impecável.</p>
+                    <span class="price">R$ 45 <small>+</small></span>
+                    <a href="agendamento.html" class="btn-sm">Agendar</a>
+                </div>
+                <div class="service-card hidden delay-2">
+                    <span class="number">02</span><span class="icon"><i class="fa-solid fa-face-smile"></i></span>
+                    <h3>Barba & Navalha</h3><p>Toalha quente e navalha para acabamento perfeito.</p>
+                    <span class="price">R$ 35 <small>+</small></span>
+                    <a href="agendamento.html" class="btn-sm">Agendar</a>
+                </div>
+                <div class="service-card hidden delay-3">
+                    <span class="number">03</span><span class="icon"><i class="fas fa-spa"></i></span>
+                    <h3>Tratamento Capilar</h3><p>Hidratação profunda e revitalização.</p>
+                    <span class="price">R$ 50 <small>+</small></span>
+                    <a href="agendamento.html" class="btn-sm">Agendar</a>
+                </div>
+                <div class="service-card hidden delay-4">
+                    <span class="number">04</span><span class="icon"><i class="fas fa-crown"></i></span>
+                    <h3>Pacote FLASH</h3><p>Corte + barba + massagem + tratamento.</p>
+                    <span class="price">R$ 85 <small>+</small></span>
+                    <a href="agendamento.html" class="btn-sm">Agendar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-image hidden">
+                <img src="https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800" alt="FLASH" />
+                <div class="stamp">✦ Tradição desde 2012</div>
+            </div>
+            <div class="about-text hidden delay-2">
+                <span class="section-label"><span class="diamond"></span>A Flash</span>
+                <h2 class="section-title">Tesoura & <span class="highlight">Tradição</span></h2>
+                <p>A FLASH nasceu da paixão pela barbearia tradicional. Aqui, cada corte é uma obra de arte, cada barba é esculpida com precisão e cada cliente é tratado com respeito.</p>
+                <ul class="about-features">
+                    <li><i class="fas fa-check"></i>Tradição e respeito</li>
+                    <li><i class="fas fa-check"></i>Barbeiros experientes</li>
+                    <li><i class="fas fa-check"></i>Ambiente autêntico</li>
+                    <li><i class="fas fa-check"></i>Atendimento personalizado</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="gallery-header hidden">
+                <div><span class="section-label"><span class="diamond"></span>Galeria</span><h2 class="section-title">Nossos <span class="highlight">trabalhos</span></h2></div>
+                <a href="#" class="btn btn-outline" style="padding:12px 28px;">Ver tudo</a>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item hidden"><img src="https://plus.unsplash.com/premium_photo-1661290481306-4841edd49719?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Corte" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
+                <div class="gallery-item hidden delay-1"><img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Barba" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
+                <div class="gallery-item hidden delay-2"><img src="https://plus.unsplash.com/premium_photo-1661507250205-79ffef5cdeb5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fade" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
+                <div class="gallery-item hidden delay-3"><img src="https://plus.unsplash.com/premium_photo-1661391423903-8b83639a6099?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Navalha" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
+                <div class="gallery-item hidden delay-4"><img src="https://plus.unsplash.com/premium_photo-1661645129806-d4e041937635?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Corte" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonials-header hidden">
+                <span class="section-label"><span class="diamond"></span>Depoimentos</span>
+                <h2 class="section-title">A <span class="highlight">galera</span> fala</h2>
+                <p class="section-sub">Quem senta na cadeira da FLASH, volta.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card hidden">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Melhor barbearia que já conheci. O barbeiro é foda, o ambiente é autêntico e o corte sempre fica perfeito."</blockquote>
+                    <div class="author"><img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Cliente" loading="lazy" /><div><div class="name">Rafael G.</div><div class="role">Cliente desde 2022</div></div></div>
+                </div>
+                <div class="testimonial-card hidden delay-2">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Atendimento impecável, ambiente raiz e o barbeiro entende exatamente o que você quer."</blockquote>
+                    <div class="author"><img src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Cliente" loading="lazy" /><div><div class="name">Thiago S.</div><div class="role">Cliente fiel</div></div></div>
+                </div>
+                <div class="testimonial-card hidden delay-3">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>"Levei meu filho para o primeiro corte e foi uma experiência incrível. O barbeiro foi super paciente."</blockquote>
+                    <div class="author"><img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Cliente" loading="lazy" /><div><div class="name">Bruno A.</div><div class="role">Pai do Lucas</div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container"><div class="cta-content hidden">
+            <span class="section-label"><span class="diamond"></span>Agende Agora</span>
+            <h2>Pronto para <span>mudar</span> o visual?</h2>
+            <p>Agende seu horário e venha experimentar a melhor barbearia da cidade.</p>
+            <a href="agendamento.html" class="btn btn-primary">Agendar Horário</a>
+        </div></div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container contact-grid">
+            <div class="contact-info hidden">
+                <span class="section-label"><span class="diamond"></span>Contato</span>
+                <h3>Bora <span class="highlight">trocar</span> ideia</h3>
+                <p>Pronto pra cortar o cabelo ou fazer a barba? Manda uma mensagem.</p>
+                <div class="info-item"><i class="fas fa-map-pin"></i><div><div class="label">Endereço</div><div class="value">Rua do Beco, 101 - Vila Madalena</div></div></div>
+                <div class="info-item"><i class="fas fa-phone-alt"></i><div><div class="label">WhatsApp</div><div class="value">(11) 94444-7777</div></div></div>
+                <div class="info-item"><i class="fas fa-clock"></i><div><div class="label">Horário</div><div class="value">Ter-Sáb: 10h às 20h | Dom: 11h às 16h</div></div></div>
+            </div>
+            <div class="contact-form hidden delay-2">
+                <h3>Agenda <span style="color:var(--blood)">aí</span></h3>
+                <p class="form-sub">Preenche que a gente responde rápido.</p>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group"><input type="text" id="contactName" placeholder="Seu nome" required /></div>
+                        <div class="form-group"><input type="tel" id="contactPhone" placeholder="WhatsApp" required /></div>
+                    </div>
+                    <div class="form-group">
+                        <select id="contactService" required>
+                            <option value="">Escolha o serviço</option>
+                            <option>Corte Clássico</option><option>Barba & Navalha</option>
+                            <option>Tratamento Capilar</option><option>Pacote FLASH</option>
+                            <option>Combo Corte + Barba</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><textarea id="contactMessage" placeholder="Mensagem..."></textarea></div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Mensagem</button>
+                </form>
+                <div id="contactFeedback" class="contact-feedback"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="index.html" class="logo">FLASH<span>.</span><small>BARBERSHOP</small></a><p>Corte, barba e tradição. A trindade do estilo raiz.</p></div>
+                <div class="footer-col"><h4>Navegação</h4><ul>
+                    <li><a href="#services">Serviços</a></li><li><a href="#about">A Flash</a></li>
+                    <li><a href="#gallery">Galeria</a></li><li><a href="agendamento.html">Agendar</a></li>
+                    <li><a href="sistema.html">Admin</a></li>
+                </ul></div>
+                <div class="footer-col"><h4>Redes</h4><ul>
+                    <li><a href="#"><i class="fab fa-instagram" style="margin-right:8px;"></i>@flash.barber</a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp" style="margin-right:8px;"></i>(11) 94444-7777</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 FLASH Barbershop.</span>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

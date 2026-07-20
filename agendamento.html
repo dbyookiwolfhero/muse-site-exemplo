@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FLASH | Agendamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="agendamento.css" />
+</head>
+<body>
+    <header id="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">FLASH<span>.</span><small>AGENDAMENTO</small></a>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="index.html" class="nav-btn-outline">← Voltar</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <section class="agendamento-hero">
+        <div class="container">
+            <div class="agendamento-hero-content">
+                <span class="section-label"><span class="diamond"></span>Agendamento</span>
+                <h1 class="section-title">Reserve seu <span class="highlight">horário</span></h1>
+                <p class="section-sub">Escolha o serviço, barbeiro e horário. Em poucos passos você garante seu corte.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="agendamento-section" id="agendamento">
+        <div class="container">
+            <!-- Progresso -->
+            <div class="agendamento-progress">
+                <div class="step active" data-step="1"><span class="num">1</span><span class="label">Serviço</span></div>
+                <div class="line active"></div>
+                <div class="step" data-step="2"><span class="num">2</span><span class="label">Barbeiro</span></div>
+                <div class="line"></div>
+                <div class="step" data-step="3"><span class="num">3</span><span class="label">Data/Hora</span></div>
+                <div class="line"></div>
+                <div class="step" data-step="4"><span class="num">4</span><span class="label">Confirmação</span></div>
+            </div>
+
+            <!-- Passos -->
+            <div class="agendamento-content">
+                <!-- PASSO 1 -->
+                <div class="step-content active" id="step1">
+                    <h2><i class="fas fa-cut"></i>Escolha o Serviço</h2>
+                    <p class="step-desc">Selecione o serviço que deseja realizar.</p>
+                    <div class="service-grid">
+                        <div class="service-card-ag" data-service="Corte Clássico" data-price="45">
+                            <i class="fas fa-cut"></i><h4>Corte Clássico</h4><p>Tesoura e pente com acabamento impecável.</p><span class="price">R$ 45</span>
+                        </div>
+                        <div class="service-card-ag" data-service="Barba & Navalha" data-price="35">
+                            <i class="fas fa-razor"></i><h4>Barba & Navalha</h4><p>Toalha quente e navalha para acabamento perfeito.</p><span class="price">R$ 35</span>
+                        </div>
+                        <div class="service-card-ag" data-service="Tratamento Capilar" data-price="50">
+                            <i class="fas fa-spa"></i><h4>Tratamento Capilar</h4><p>Hidratação profunda e revitalização.</p><span class="price">R$ 50</span>
+                        </div>
+                        <div class="service-card-ag" data-service="Pacote FLASH" data-price="85">
+                            <i class="fas fa-crown"></i><h4>Pacote FLASH</h4><p>Corte + barba + massagem + tratamento.</p><span class="price">R$ 85</span>
+                        </div>
+                        <div class="service-card-ag" data-service="Combo Corte + Barba" data-price="70">
+                            <i class="fas fa-scissors"></i><h4>Combo Corte + Barba</h4><p>Os dois serviços com desconto.</p><span class="price">R$ 70</span>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-primary next-step" disabled id="nextStep1">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- PASSO 2 -->
+                <div class="step-content" id="step2">
+                    <h2><i class="fas fa-user-tie"></i>Escolha o Barbeiro</h2>
+                    <p class="step-desc">Selecione o profissional que irá te atender.</p>
+                    <div class="barber-grid">
+                        <div class="barber-card-ag" data-barber="Rafael Mendes">
+                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Rafael" />
+                            <div>
+                                <h4>Rafael Mendes</h4>
+                                <span class="badge">⭐ 4.9</span>
+                                <p>Especialista em cortes clássicos e degradê. 8 anos de experiência.</p>
+                                <div class="tags"><span>Fade</span><span>Navalha</span><span>Barba</span></div>
+                            </div>
+                        </div>
+                        <div class="barber-card-ag" data-barber="Thiago Santos">
+                            <img src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Thiago" />
+                            <div>
+                                <h4>Thiago Santos</h4>
+                                <span class="badge">⭐ 4.8</span>
+                                <p>Especialista em cortes modernos e barba de respeito. 6 anos de experiência.</p>
+                                <div class="tags"><span>Moderno</span><span>Barba</span><span>Pompadour</span></div>
+                            </div>
+                        </div>
+                        <div class="barber-card-ag" data-barber="Carlos Eduardo">
+                            <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Carlos" />
+                            <div>
+                                <h4>Carlos Eduardo</h4>
+                                <span class="badge">⭐ 5.0</span>
+                                <p>Mestre da navalha e tratamentos capilares. 12 anos de experiência.</p>
+                                <div class="tags"><span>Navalha</span><span>Tratamento</span><span>Clássico</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline prev-step">← Voltar</button>
+                        <button class="btn btn-primary next-step" disabled id="nextStep2">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- PASSO 3 -->
+                <div class="step-content" id="step3">
+                    <h2><i class="fas fa-calendar-alt"></i>Data e Horário</h2>
+                    <p class="step-desc">Escolha o dia e o horário para seu atendimento.</p>
+                    <div class="datetime-grid">
+                        <div class="date-section">
+                            <h4>📅 Data</h4>
+                            <input type="date" id="agDate" />
+                        </div>
+                        <div class="time-section">
+                            <h4>🕐 Horário</h4>
+                            <div class="time-grid" id="timeGrid">
+                                <button class="time-slot" data-time="09:00">09:00</button>
+                                <button class="time-slot" data-time="10:00">10:00</button>
+                                <button class="time-slot" data-time="11:00">11:00</button>
+                                <button class="time-slot" data-time="12:00">12:00</button>
+                                <button class="time-slot" data-time="13:00">13:00</button>
+                                <button class="time-slot" data-time="14:00">14:00</button>
+                                <button class="time-slot" data-time="15:00">15:00</button>
+                                <button class="time-slot" data-time="16:00">16:00</button>
+                                <button class="time-slot" data-time="17:00">17:00</button>
+                                <button class="time-slot" data-time="18:00">18:00</button>
+                                <button class="time-slot" data-time="19:00">19:00</button>
+                                <button class="time-slot" data-time="20:00">20:00</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline prev-step">← Voltar</button>
+                        <button class="btn btn-primary next-step" disabled id="nextStep3">Próximo →</button>
+                    </div>
+                </div>
+
+                <!-- PASSO 4 -->
+                <div class="step-content" id="step4">
+                    <h2><i class="fas fa-check-circle"></i>Confirmar Agendamento</h2>
+                    <p class="step-desc">Revise os dados e confirme seu agendamento.</p>
+                    <div class="confirmation-card">
+                        <div class="conf-item"><span class="label">Serviço:</span><span class="value" id="confService">-</span></div>
+                        <div class="conf-item"><span class="label">Barbeiro:</span><span class="value" id="confBarber">-</span></div>
+                        <div class="conf-item"><span class="label">Data:</span><span class="value" id="confDate">-</span></div>
+                        <div class="conf-item"><span class="label">Horário:</span><span class="value" id="confTime">-</span></div>
+                        <div class="conf-item"><span class="label">Total:</span><span class="value" id="confPrice">-</span></div>
+                    </div>
+                    <div class="form-group"><label>Seu Nome</label><input type="text" id="clientName" placeholder="Digite seu nome completo" /></div>
+                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="clientPhone" placeholder="(11) 99999-9999" /></div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline prev-step">← Voltar</button>
+                        <button class="btn btn-primary" id="confirmAgendamento"><i class="fas fa-check"></i> Confirmar</button>
+                    </div>
+                    <div id="agFeedback" class="ag-feedback"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand"><a href="index.html" class="logo">FLASH<span>.</span><small>BARBERSHOP</small></a><p>Corte, barba e tradição.</p></div>
+                <div class="footer-col"><h4>Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="agendamento.html">Agendar</a></li><li><a href="sistema.html">Admin</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><span>&copy; 2026 FLASH Barbershop.</span></div>
+        </div>
+    </footer>
+
+    <script src="agendamento.js"></script>
+</body>
+</html>

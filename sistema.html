@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FLASH | Sistema</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="sistema.css" />
+</head>
+<body>
+    <header id="header" style="display:none;">
+        <div class="container header-content">
+            <a href="index.html" class="logo">FLASH<span>.</span><small>SISTEMA</small></a>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#agendamentos">Agendamentos</a></li>
+                    <li><a href="#barbeiros">Barbeiros</a></li>
+                    <li><a href="#clientes">Clientes</a></li>
+                    <li><a href="index.html" class="nav-btn-outline">Sair</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- LOGIN -->
+    <section class="login-section" id="login">
+        <div class="container">
+            <div class="login-box">
+                <h2><i class="fas fa-lock"></i>Admin</h2>
+                <p>Faça login para acessar o sistema</p>
+                <div class="form-group"><input type="text" id="loginUser" placeholder="Usuário" value="admin" /></div>
+                <div class="form-group"><input type="password" id="loginPass" placeholder="Senha" value="123456" /></div>
+                <button class="btn btn-primary" id="loginBtn">Entrar</button>
+                <div id="loginFeedback" class="login-feedback"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="dashboard-section" id="dashboard" style="display:none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <span class="section-label"><span class="diamond"></span>Dashboard</span>
+                <h2 class="section-title">Visão <span class="highlight">Geral</span></h2>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card"><i class="fas fa-calendar-check"></i><h3>Agendamentos Hoje</h3><span class="dash-number">12</span><p>+3 em relação a ontem</p></div>
+                <div class="dashboard-card"><i class="fas fa-users"></i><h3>Clientes Atendidos</h3><span class="dash-number">2.384</span><p>Total de clientes</p></div>
+                <div class="dashboard-card"><i class="fas fa-star"></i><h3>Avaliação Média</h3><span class="dash-number">4.8 ★</span><p>342 avaliações</p></div>
+                <div class="dashboard-card"><i class="fas fa-dollar-sign"></i><h3>Faturamento Mensal</h3><span class="dash-number">R$ 8.450</span><p>+12% mês passado</p></div>
+            </div>
+
+            <div class="recent-bookings" id="agendamentos">
+                <h3><i class="fas fa-list"></i>Agendamentos Recentes</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Serviço</th>
+                                <th>Barbeiro</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="agendamentosTable">
+                            <tr>
+                                <td>Carlos Silva</td>
+                                <td>Corte Clássico</td>
+                                <td>Rafael Mendes</td>
+                                <td>15/07/2026 14:00</td>
+                                <td><span class="status confirmed">Confirmado</span></td>
+                                <td>
+                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
+                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>André Oliveira</td>
+                                <td>Barba & Navalha</td>
+                                <td>Thiago Santos</td>
+                                <td>15/07/2026 16:30</td>
+                                <td><span class="status pending">Pendente</span></td>
+                                <td>
+                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
+                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Marcos Pereira</td>
+                                <td>Pacote FLASH</td>
+                                <td>Carlos Eduardo</td>
+                                <td>16/07/2026 10:00</td>
+                                <td><span class="status confirmed">Confirmado</span></td>
+                                <td>
+                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
+                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Lucas Ferreira</td>
+                                <td>Combo Corte + Barba</td>
+                                <td>Rafael Mendes</td>
+                                <td>16/07/2026 13:30</td>
+                                <td><span class="status completed">Finalizado</span></td>
+                                <td>
+                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
+                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Roberto Almeida</td>
+                                <td>Tratamento Capilar</td>
+                                <td>Carlos Eduardo</td>
+                                <td>17/07/2026 09:00</td>
+                                <td><span class="status pending">Pendente</span></td>
+                                <td>
+                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
+                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BARBEIROS -->
+    <section class="barbers-admin" id="barbeiros" style="display:none;">
+        <div class="container">
+            <div class="barbers-admin-header">
+                <span class="section-label"><span class="diamond"></span>Barbeiros</span>
+                <h2 class="section-title">Nossa <span class="highlight">Equipe</span></h2>
+            </div>
+            <div class="barbers-admin-grid">
+                <div class="barber-admin-card">
+                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Rafael" />
+                    <div>
+                        <h4>Rafael Mendes</h4>
+                        <span class="badge-barber">⭐ 4.9</span>
+                        <p>8 anos de experiência. Especialista em cortes clássicos.</p>
+                        <div class="admin-actions">
+                            <button class="btn-sm" onclick="editarBarbeiro(this)">Editar</button>
+                            <button class="btn-sm btn-gray" onclick="verAgenda(this)">Agenda</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="barber-admin-card">
+                    <img src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Thiago" />
+                    <div>
+                        <h4>Thiago Santos</h4>
+                        <span class="badge-barber">⭐ 4.8</span>
+                        <p>6 anos de experiência. Especialista em cortes modernos.</p>
+                        <div class="admin-actions">
+                            <button class="btn-sm" onclick="editarBarbeiro(this)">Editar</button>
+                            <button class="btn-sm btn-gray" onclick="verAgenda(this)">Agenda</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="barber-admin-card">
+                    <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Carlos" />
+                    <div>
+                        <h4>Carlos Eduardo</h4>
+                        <span class="badge-barber">⭐ 5.0</span>
+                        <p>12 anos de experiência. Mestre da navalha.</p>
+                        <div class="admin-actions">
+                            <button class="btn-sm" onclick="editarBarbeiro(this)">Editar</button>
+                            <button class="btn-sm btn-gray" onclick="verAgenda(this)">Agenda</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="clientes-section" id="clientes" style="display:none;">
+        <div class="container">
+            <div class="clientes-header">
+                <span class="section-label"><span class="diamond"></span>Clientes</span>
+                <h2 class="section-title">Base de <span class="highlight">Clientes</span></h2>
+            </div>
+            <div class="clientes-grid">
+                <div class="cliente-card">
+                    <div class="cliente-info">
+                        <h4>Carlos Silva</h4>
+                        <p><i class="fas fa-phone"></i> (11) 99999-1111</p>
+                        <p><i class="fas fa-cut"></i> Corte Clássico</p>
+                        <span class="status confirmed">Frequente</span>
+                    </div>
+                </div>
+                <div class="cliente-card">
+                    <div class="cliente-info">
+                        <h4>André Oliveira</h4>
+                        <p><i class="fas fa-phone"></i> (11) 99999-2222</p>
+                        <p><i class="fas fa-razor"></i> Barba & Navalha</p>
+                        <span class="status pending">Ocasional</span>
+                    </div>
+                </div>
+                <div class="cliente-card">
+                    <div class="cliente-info">
+                        <h4>Marcos Pereira</h4>
+                        <p><i class="fas fa-phone"></i> (11) 99999-3333</p>
+                        <p><i class="fas fa-crown"></i> Pacote FLASH</p>
+                        <span class="status confirmed">VIP</span>
+                    </div>
+                </div>
+                <div class="cliente-card">
+                    <div class="cliente-info">
+                        <h4>Lucas Ferreira</h4>
+                        <p><i class="fas fa-phone"></i> (11) 99999-4444</p>
+                        <p><i class="fas fa-scissors"></i> Combo Corte + Barba</p>
+                        <span class="status completed">Frequente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footerAdmin" style="display:none;">
+        <div class="container">
+            <div class="footer-bottom"><span>&copy; 2026 FLASH Barbershop - Sistema</span></div>
+        </div>
+    </footer>
+
+    <script src="sistema.js"></script>
+</body>
+</html>
