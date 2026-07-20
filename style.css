@@ -1387,13 +1387,13 @@ footer {
         /* Remove o fixed que quebra no mobile */
         background-attachment: scroll;
         /* Ajusta posição para enquadrar melhor no celular */
-        background-position: 65% center;
+        background-position: center;
         background-size: cover;
         /* Gradiente mais forte para esconder o corte da imagem */
         background-image: 
             linear-gradient(
                 rgba(10, 14, 26, 0.75),
-                rgba(10, 14, 26, 0.90)
+                rgba(10, 14, 26, 0.492)
             ),
             url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80');
     }
@@ -1576,7 +1576,7 @@ footer {
                 rgba(10, 14, 26, 0.80),
                 rgba(10, 14, 26, 0.5)
             ),
-            url('https://images.unsplash.com/photo-1599351431529-5a74f50ef2e7?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            url('https://images.unsplash.com/photo-1662125502527-bb106378d560?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     }
 
     .hero-text h1 {
