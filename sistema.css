@@ -104,7 +104,7 @@
 
 .dashboard-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(168, 50, 38, 0.04);
+    border-color: rgba(42, 111, 143, 0.04);
 }
 
 .dashboard-card i {
@@ -217,7 +217,7 @@ table tbody .btn-sm {
 }
 
 .status.confirmed {
-    background: rgba(201, 168, 76, 0.1);
+    background: rgba(184, 134, 75, 0.1);
     color: var(--gold-old);
 }
 
@@ -227,7 +227,7 @@ table tbody .btn-sm {
 }
 
 .status.completed {
-    background: rgba(168, 50, 38, 0.1);
+    background: rgba(42, 111, 143, 0.1);
     color: var(--blood);
 }
 
@@ -265,7 +265,7 @@ table tbody .btn-sm {
 
 .barber-admin-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(168, 50, 38, 0.04);
+    border-color: rgba(42, 111, 143, 0.04);
 }
 
 .barber-admin-card img {
@@ -273,7 +273,7 @@ table tbody .btn-sm {
     height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(168, 50, 38, 0.1);
+    border: 2px solid rgba(42, 111, 143, 0.1);
 }
 
 .barber-admin-card h4 {
@@ -333,7 +333,7 @@ table tbody .btn-sm {
 
 .cliente-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(168, 50, 38, 0.04);
+    border-color: rgba(42, 111, 143, 0.04);
 }
 
 .cliente-info h4 {
