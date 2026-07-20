@@ -6,14 +6,14 @@
 }
 
 :root {
-    --ink-black: #0d0b0a;
-    --ink-dark: #1a1513;
-    --blood: #a83226;
-    --blood-light: #c94d3f;
-    --gold-old: #c9a84c;
-    --gold-faded: #b8983a;
-    --cream: #f7f0e8;
-    --gray-ink: #8a7e74;
+    --ink-black: #0a0e1a;
+    --ink-dark: #0f1426;
+    --blood: #2a6f8f;
+    --blood-light: #3d8bb0;
+    --gold-old: #b8864b;
+    --gold-faded: #a0723a;
+    --cream: #e8edf2;
+    --gray-ink: #7a8a9e;
     --border-ink: rgba(255, 255, 255, 0.04);
     --shadow-ink: 0 8px 40px rgba(0, 0, 0, 0.3);
     --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -77,11 +77,11 @@ img {
 
 ::-webkit-scrollbar-track {
     background: var(--ink-black);
-    border-left: 1px solid rgba(168, 50, 38, 0.08);
+    border-left: 1px solid rgba(42, 111, 143, 0.08);
     background-image: 
-        radial-gradient(circle at 10px 20px, rgba(168, 50, 38, 0.03) 1px, transparent 1px),
-        radial-gradient(circle at 30px 60px, rgba(168, 50, 38, 0.02) 1px, transparent 1px),
-        radial-gradient(circle at 50px 100px, rgba(201, 168, 76, 0.02) 1px, transparent 1px);
+        radial-gradient(circle at 10px 20px, rgba(42, 111, 143, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 30px 60px, rgba(42, 111, 143, 0.02) 1px, transparent 1px),
+        radial-gradient(circle at 50px 100px, rgba(184, 134, 75, 0.02) 1px, transparent 1px);
     background-size: 50px 50px;
 }
 
@@ -90,19 +90,19 @@ img {
     border-radius: 0;
     transition: var(--transition);
     box-shadow: 
-        0 0 15px rgba(168, 50, 38, 0.2),
-        inset 0 0 10px rgba(201, 168, 76, 0.1);
+        0 0 15px rgba(42, 111, 143, 0.2),
+        inset 0 0 10px rgba(184, 134, 75, 0.1);
     animation: scrollGlow 3s ease-in-out infinite;
-    border-left: 1px solid rgba(201, 168, 76, 0.15);
-    border-right: 1px solid rgba(201, 168, 76, 0.05);
+    border-left: 1px solid rgba(184, 134, 75, 0.15);
+    border-right: 1px solid rgba(184, 134, 75, 0.05);
     position: relative;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, var(--blood-light) 0%, var(--gold-old) 70%, var(--blood-light) 100%);
     box-shadow: 
-        0 0 30px rgba(168, 50, 38, 0.4),
-        inset 0 0 15px rgba(201, 168, 76, 0.2);
+        0 0 30px rgba(42, 111, 143, 0.4),
+        inset 0 0 15px rgba(184, 134, 75, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:active {
@@ -116,10 +116,10 @@ img {
 /* Efeito de brilho na scrollbar */
 @keyframes scrollGlow {
     0%, 100% {
-        box-shadow: 0 0 10px rgba(168, 50, 38, 0.15);
+        box-shadow: 0 0 10px rgba(42, 111, 143, 0.15);
     }
     50% {
-        box-shadow: 0 0 25px rgba(168, 50, 38, 0.35);
+        box-shadow: 0 0 25px rgba(42, 111, 143, 0.35);
     }
 }
 
@@ -132,7 +132,7 @@ img {
     right: 3px;
     height: 1px;
     background: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 5px 15px rgba(168, 50, 38, 0.15);
+    box-shadow: 0 5px 15px rgba(42, 111, 143, 0.15);
 }
 
 /* Scrollbar em telas pequenas */
@@ -163,7 +163,7 @@ img {
 .contact-form::-webkit-scrollbar-track,
 .service-card::-webkit-scrollbar-track,
 .testimonial-card::-webkit-scrollbar-track {
-    background: rgba(13, 11, 10, 0.5);
+    background: rgba(10, 14, 26, 0.5);
 }
 
 .contact-form::-webkit-scrollbar-thumb,
@@ -253,7 +253,7 @@ img {
 .btn-primary:hover {
     background: var(--blood-light);
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(168, 50, 38, 0.3);
+    box-shadow: 0 8px 30px rgba(42, 111, 143, 0.3);
 }
 
 .btn-outline {
@@ -369,14 +369,14 @@ header {
 }
 
 header.scrolled {
-    background: rgba(13, 11, 10, 0.95);
+    background: rgba(10, 14, 26, 0.95);
     backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(168, 50, 38, 0.08);
+    border-bottom: 1px solid rgba(42, 111, 143, 0.08);
     padding: 12px 0;
 }
 
 header.menu-open {
-    background: rgba(13, 11, 10, 0.98);
+    background: rgba(10, 14, 26, 0.98);
     backdrop-filter: blur(16px);
 }
 
@@ -495,8 +495,8 @@ nav a:hover {
     inset: 0;
     background: 
         linear-gradient(
-            rgba(13, 11, 10, 0.65),
-            rgba(13, 11, 10, 0.85)
+            rgba(10, 14, 26, 0.65),
+            rgba(10, 14, 26, 0.85)
         ),
         url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80') center/cover no-repeat;
     background-attachment: fixed;
@@ -535,9 +535,9 @@ nav a:hover {
     color: var(--blood);
     font-weight: 400;
     margin-bottom: 20px;
-    border: 1px solid rgba(168, 50, 38, 0.15);
+    border: 1px solid rgba(42, 111, 143, 0.15);
     padding: 6px 16px 6px 12px;
-    background: rgba(13, 11, 10, 0.4);
+    background: rgba(10, 14, 26, 0.4);
     backdrop-filter: blur(4px);
 }
 
@@ -629,7 +629,7 @@ nav a:hover {
     height: auto;
     object-fit: cover;
     filter: grayscale(0.4) contrast(1.05);
-    border: 1px solid rgba(168, 50, 38, 0.05);
+    border: 1px solid rgba(42, 111, 143, 0.05);
 }
 
 .hero-image .tattoo-frame {
@@ -654,9 +654,9 @@ nav a:hover {
     position: absolute;
     bottom: -16px;
     right: -16px;
-    background: rgba(26, 21, 19, 0.9);
+    background: rgba(15, 20, 38, 0.9);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(168, 50, 38, 0.08);
+    border: 1px solid rgba(42, 111, 143, 0.08);
     padding: 16px 22px;
     display: flex;
     align-items: center;
@@ -740,7 +740,7 @@ nav a:hover {
 
 .service-card:hover {
     transform: translateY(-8px);
-    border-color: rgba(168, 50, 38, 0.04);
+    border-color: rgba(42, 111, 143, 0.04);
     box-shadow: var(--shadow-ink);
 }
 
@@ -748,7 +748,7 @@ nav a:hover {
     font-family: 'Lora', serif;
     font-size: 2.8rem;
     font-weight: 400;
-    color: rgb(168, 51, 38);
+    color: rgb(42, 111, 143);
     line-height: 1;
     margin-bottom: -8px;
     display: block;
@@ -822,7 +822,7 @@ nav a:hover {
     width: 100%;
     height: auto;
     filter: grayscale(0.2) contrast(1.05);
-    border: 1px solid rgba(168, 50, 38, 0.04);
+    border: 1px solid rgba(42, 111, 143, 0.04);
 }
 
 .about-image .stamp {
@@ -933,7 +933,7 @@ nav a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(168, 50, 38, 0.05);
+    background: rgba(42, 111, 143, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -992,7 +992,7 @@ nav a:hover {
 
 .testimonial-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(168, 50, 38, 0.04);
+    border-color: rgba(42, 111, 143, 0.04);
     box-shadow: var(--shadow-ink);
 }
 
@@ -1023,7 +1023,7 @@ nav a:hover {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(168, 50, 38, 0.08);
+    border: 1px solid rgba(42, 111, 143, 0.08);
 }
 
 .testimonial-card .author .name {
@@ -1395,8 +1395,8 @@ footer {
         /* Gradiente mais forte para esconder o corte da imagem */
         background-image: 
             linear-gradient(
-                rgba(13, 11, 10, 0.75),
-                rgba(13, 11, 10, 0.90)
+                rgba(10, 14, 26, 0.75),
+                rgba(10, 14, 26, 0.90)
             ),
             url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80');
     }
@@ -1415,7 +1415,7 @@ footer {
         width: 100%;
         height: 100vh;
         min-height: 100vh;
-        background: rgba(13, 11, 10, 0.98);
+        background: rgba(10, 14, 26, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         
@@ -1517,7 +1517,7 @@ footer {
     }
 
     header.menu-open {
-        background: rgba(13, 11, 10, 0.98);
+        background: rgba(10, 14, 26, 0.98);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
     }
@@ -1575,8 +1575,8 @@ footer {
         background-size: cover;
         background-image: 
             linear-gradient(
-                rgba(13, 11, 10, 0.80),
-                rgba(13, 11, 10, 0.92)
+                rgba(10, 14, 26, 0.80),
+                rgba(10, 14, 26, 0.92)
             ),
             url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80');
     }
