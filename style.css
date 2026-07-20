@@ -474,7 +474,10 @@ nav a:hover {
     color: var(--blood);
 }
 
-/* ---------- HERO ---------- */
+/* ============================================================
+   HERO - FIX BACKGROUND ATTACHMENT MOBILE
+   ============================================================ */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -485,11 +488,16 @@ nav a:hover {
     overflow: hidden;
 }
 
+/* Hero background com gradiente escuro para destacar o texto */
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
+    background: 
+        linear-gradient(
+            rgba(13, 11, 10, 0.65),
+            rgba(13, 11, 10, 0.85)
+        ),
         url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1600&q=80') center/cover no-repeat;
     background-attachment: fixed;
     z-index: 0;
@@ -560,7 +568,7 @@ nav a:hover {
 }
 
 .hero-text p {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 1.05rem;
     max-width: 400px;
     margin-bottom: 32px;
@@ -1294,7 +1302,7 @@ footer {
 }
 
 /* ============================================================
-   RESPONSIVIDADE - MENU MOBILE FIX
+   RESPONSIVIDADE COMPLETA
    ============================================================ */
 
 @media (max-width: 1024px) {
@@ -1372,14 +1380,32 @@ footer {
     }
 }
 
-/* ---------- MENU MOBILE FIX ---------- */
+/* ============================================================
+   FIX: BACKGROUND-ATTACHMENT NO MOBILE
+   ============================================================ */
+
 @media (max-width: 768px) {
-    /* Mostra o hambúrguer */
+    /* ---------- HERO FIX MOBILE ---------- */
+    .hero::before {
+        /* Remove o fixed que quebra no mobile */
+        background-attachment: scroll;
+        /* Ajusta posição para enquadrar melhor no celular */
+        background-position: 65% center;
+        background-size: cover;
+        /* Gradiente mais forte para esconder o corte da imagem */
+        background-image: 
+            linear-gradient(
+                rgba(13, 11, 10, 0.75),
+                rgba(13, 11, 10, 0.90)
+            ),
+            url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80');
+    }
+
+    /* ---------- MENU MOBILE ---------- */
     .mobile-toggle {
         display: block !important;
     }
 
-    /* Container do menu - SEM position absolute/relative que cause escape */
     nav ul {
         position: fixed;
         top: 0;
@@ -1393,15 +1419,12 @@ footer {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         
-        /* FLEX PERFEITO - Centraliza tudo verticalmente */
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 18px;
         
-        /* Remove qualquer position que possa causar escape */
-        position: fixed;
         transform: translateX(100%);
         transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         
@@ -1412,12 +1435,10 @@ footer {
         overflow-y: auto;
     }
 
-    /* Menu aberto */
     nav ul.active {
         transform: translateX(0);
     }
 
-    /* Cada link do menu */
     nav ul li {
         width: 100%;
         max-width: 280px;
@@ -1426,7 +1447,6 @@ footer {
         padding: 0;
     }
 
-    /* Links do menu */
     nav ul a {
         display: block;
         width: 100%;
@@ -1449,7 +1469,6 @@ footer {
         display: none;
     }
 
-    /* BOTÕES DO MENU - AGORA FICAM DENTRO DO FLUXO */
     .nav-btn,
     .nav-btn-outline {
         display: block;
@@ -1488,18 +1507,15 @@ footer {
         transform: translateY(-2px);
     }
 
-    /* Espaçamento extra entre os botões e os links */
     nav ul li:last-child {
         margin-top: 8px;
     }
 
-    /* HERO - Fica atrás do menu */
     .hero {
         position: relative;
         z-index: 1;
     }
 
-    /* Ajustes do header quando menu aberto */
     header.menu-open {
         background: rgba(13, 11, 10, 0.98);
         backdrop-filter: blur(16px);
@@ -1551,7 +1567,20 @@ footer {
     }
 }
 
+/* ---------- AJUSTE EXTRA PARA CELULARES PEQUENOS ---------- */
 @media (max-width: 480px) {
+    /* Hero com posição mais ajustada para telas pequenas */
+    .hero::before {
+        background-position:  center;
+        background-size: cover;
+        background-image: 
+            linear-gradient(
+                rgba(13, 11, 10, 0.80),
+                rgba(13, 11, 10, 0.92)
+            ),
+            url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80');
+    }
+
     .hero-text h1 {
         font-size: 2.6rem;
     }
@@ -1617,7 +1646,6 @@ footer {
         max-width: 280px;
     }
 
-    /* Ajuste fino do menu mobile em telas muito pequenas */
     nav ul {
         padding: 70px 20px 30px;
         gap: 14px;
@@ -1633,5 +1661,13 @@ footer {
         font-size: 0.7rem;
         padding: 12px 24px;
         max-width: 240px;
+    }
+}
+
+/* ---------- AJUSTE PARA TABLETS ---------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero::before {
+        background-attachment: scroll;
+        background-position: center center;
     }
 }
