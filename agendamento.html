@@ -3,183 +3,997 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FLASH | Agendamento</title>
+    <title>Agendamento · MUSE Hair Atelier</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="agendamento.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f0eb;
+            --bg-card: #ffffff;
+            --text: #1e1a18;
+            --text-light: #8a7e78;
+            --text-muted: #b5aba5;
+            --primary: #a67c6b;
+            --primary-light: #d4b8ad;
+            --primary-dark: #7a5a4a;
+            --gold: #c4a882;
+            --gold-light: #e8d9cc;
+            --border: #e8e0da;
+            --shadow: 0 4px 30px rgba(166, 124, 107, 0.06);
+            --shadow-hover: 0 12px 50px rgba(166, 124, 107, 0.10);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --success: #5b8c5a;
+            --success-light: #e8f5e9;
+            --warning: #c9a87c;
+            --danger: #c47a7a;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(245, 240, 235, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.4rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            display: block;
+            margin-top: -4px;
+        }
+
+        .back-link {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* HERO */
+        .page-hero {
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .page-hero h1 span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .page-hero p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 4px;
+        }
+
+        /* FORM */
+        .booking-section {
+            padding: 20px 0 60px;
+        }
+
+        .booking-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .booking-form {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .booking-form .step-indicator {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .booking-form .step-indicator .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .booking-form .step-indicator .step.active {
+            color: #fff;
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .booking-form .step-indicator .step.done {
+            color: #fff;
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .booking-form .step-indicator .step .num {
+            font-weight: 700;
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeStep 0.4s ease forwards;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeStep {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-step h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-step .sub {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(166, 124, 107, 0.08);
+        }
+
+        .form-group textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 38px;
+            border-radius: 0;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--text);
+            color: #fff;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: var(--success);
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+
+        /* SIDEBAR */
+        .booking-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            padding: 28px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .sidebar-card .info-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .sidebar-card .info-item i {
+            color: var(--primary);
+            width: 18px;
+            margin-top: 2px;
+        }
+
+        .sidebar-card .info-item strong {
+            color: var(--text);
+        }
+
+        .service-preview {
+            background: var(--bg);
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-preview .name {
+            font-weight: 500;
+        }
+
+        .service-preview .price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* CONFIRMATION */
+        .confirmation-box {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .confirmation-box .icon-big {
+            font-size: 4rem;
+            color: var(--success);
+            margin-bottom: 16px;
+        }
+
+        .confirmation-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .confirmation-box p {
+            color: var(--text-light);
+            margin: 8px 0 4px;
+        }
+
+        .confirmation-box .details {
+            background: var(--bg);
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            margin: 16px 0;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .confirmation-box .details .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .confirmation-box .details .row:last-child {
+            border-bottom: none;
+        }
+
+        .confirmation-box .details .label {
+            color: var(--text-light);
+        }
+
+        .confirmation-box .details .value {
+            font-weight: 500;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .booking-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                padding: 24px;
+            }
+
+            .booking-form .step-indicator {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .booking-form .step-indicator .step {
+                font-size: 0.6rem;
+                padding: 4px 12px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+
+            .sidebar-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .booking-form {
+                padding: 18px;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .confirmation-box .icon-big {
+                font-size: 3rem;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--text);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-hover);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            max-width: 360px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast .toast-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .toast .toast-msg {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
-    <header id="header">
+
+    <!-- HEADER -->
+    <header>
         <div class="container header-content">
-            <a href="index.html" class="logo">FLASH<span>.</span><small>AGENDAMENTO</small></a>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="index.html" class="nav-btn-outline">← Voltar</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
+            <a href="index.html" class="logo">MUSE<span>.</span><small>hair atelier</small></a>
+            <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar</a>
         </div>
     </header>
 
-    <section class="agendamento-hero">
+    <!-- HERO -->
+    <section class="page-hero">
         <div class="container">
-            <div class="agendamento-hero-content">
-                <span class="section-label"><span class="diamond"></span>Agendamento</span>
-                <h1 class="section-title">Reserve seu <span class="highlight">horário</span></h1>
-                <p class="section-sub">Escolha o serviço, barbeiro e horário. Em poucos passos você garante seu corte.</p>
+            <h1>Agende seu <span>horário</span></h1>
+            <p>Escolha o serviço, a data e finalize seu agendamento em poucos passos.</p>
+        </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-grid">
+
+                <!-- FORMULÁRIO -->
+                <div class="booking-form" id="bookingForm">
+                    <!-- Step Indicator -->
+                    <div class="step-indicator">
+                        <div class="step active" id="step1Indicator"><span class="num">1</span> Serviço</div>
+                        <div class="step" id="step2Indicator"><span class="num">2</span> Dados</div>
+                        <div class="step" id="step3Indicator"><span class="num">3</span> Confirmação</div>
+                    </div>
+
+                    <!-- STEP 1 - SERVIÇO -->
+                    <div class="form-step active" id="step1">
+                        <h3>Escolha seu serviço</h3>
+                        <p class="sub">Selecione o que deseja fazer.</p>
+
+                        <div class="form-group">
+                            <label>Serviço</label>
+                            <select id="serviceSelect">
+                                <option value="">Selecione...</option>
+                                <option value="Corte & Textura" data-price="55">Corte & Textura - R$ 55</option>
+                                <option value="Coloração & Luzes" data-price="120">Coloração & Luzes - R$ 120</option>
+                                <option value="Tratamento Orgânico" data-price="60">Tratamento Orgânico - R$ 60</option>
+                                <option value="Pacote MUSE" data-price="190">Pacote MUSE - R$ 190</option>
+                                <option value="Completo" data-price="250">Completo - R$ 250</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Data</label>
+                            <input type="date" id="dateInput" min="2026-01-01" />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Horário</label>
+                                <select id="timeSelect">
+                                    <option value="">Selecione...</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Profissional</label>
+                                <select id="professionalSelect">
+                                    <option value="">Selecione...</option>
+                                    <option value="Ana Silva">Ana Silva</option>
+                                    <option value="Carla Santos">Carla Santos</option>
+                                    <option value="Mariana Costa">Mariana Costa</option>
+                                    <option value="Juliana Lima">Juliana Lima</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <span></span>
+                            <button class="btn btn-primary" onclick="goToStep(2)">Próximo <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 - DADOS -->
+                    <div class="form-step" id="step2">
+                        <h3>Seus dados</h3>
+                        <p class="sub">Preencha com seus dados para confirmar o agendamento.</p>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nome completo</label>
+                                <input type="text" id="clientName" placeholder="Seu nome" />
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="tel" id="clientPhone" placeholder="(11) 99999-9999" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>E-mail</label>
+                            <input type="email" id="clientEmail" placeholder="seu@email.com" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Observações</label>
+                            <textarea id="clientObs" placeholder="Alguma observação? (opcional)"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn-outline" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                            <button class="btn btn-primary" onclick="goToStep(3)">Revisar <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 - CONFIRMAÇÃO -->
+                    <div class="form-step" id="step3">
+                        <div class="confirmation-box" id="confirmationBox">
+                            <div class="icon-big"><i class="fas fa-check-circle"></i></div>
+                            <h3>Confirme seu agendamento</h3>
+                            <p>Verifique os dados e confirme para finalizar.</p>
+
+                            <div class="details" id="confirmationDetails">
+                                <div class="row"><span class="label">Serviço</span><span class="value" id="confService">-</span></div>
+                                <div class="row"><span class="label">Profissional</span><span class="value" id="confProfessional">-</span></div>
+                                <div class="row"><span class="label">Data</span><span class="value" id="confDate">-</span></div>
+                                <div class="row"><span class="label">Horário</span><span class="value" id="confTime">-</span></div>
+                                <div class="row"><span class="label">Cliente</span><span class="value" id="confName">-</span></div>
+                                <div class="row"><span class="label">Telefone</span><span class="value" id="confPhone">-</span></div>
+                                <div class="row"><span class="label">E-mail</span><span class="value" id="confEmail">-</span></div>
+                                <div class="row" style="border-bottom:none;font-weight:700;font-size:1.1rem;padding-top:10px;">
+                                    <span class="label">Total</span>
+                                    <span class="value" style="color:var(--primary);" id="confTotal">-</span>
+                                </div>
+                            </div>
+
+                            <div class="form-actions" style="justify-content:center;">
+                                <button class="btn btn-outline" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                                <button class="btn btn-success" onclick="confirmBooking()"><i class="fas fa-check"></i> Confirmar Agendamento</button>
+                            </div>
+                        </div>
+
+                        <!-- CONFIRMADO (hidden inicial) -->
+                        <div class="confirmation-box hidden" id="successBox">
+                            <div class="icon-big" style="color:var(--success);"><i class="fas fa-check-circle"></i></div>
+                            <h3>Agendamento confirmado!</h3>
+                            <p>Seu horário foi reservado com sucesso.</p>
+                            <div class="details" style="background:var(--success-light);">
+                                <p style="font-size:0.85rem;color:var(--text);">
+                                    <i class="fas fa-calendar-check" style="color:var(--success);"></i>
+                                    <strong id="successDate">-</strong> às <strong id="successTime">-</strong>
+                                    <br />
+                                    <span id="successService">-</span> com <span id="successProfessional">-</span>
+                                </p>
+                                <p style="font-size:0.75rem;color:var(--text-light);margin-top:8px;">
+                                    Um e-mail de confirmação foi enviado para <strong id="successEmail">-</strong>
+                                </p>
+                            </div>
+                            <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
+                                <a href="index.html" class="btn btn-primary">Voltar ao site</a>
+                                <a href="agendamento.html" class="btn btn-outline">Novo agendamento</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="booking-sidebar">
+                    <div class="sidebar-card">
+                        <h4><i class="fas fa-info-circle" style="color:var(--primary);"></i> Resumo</h4>
+                        <div class="service-preview">
+                            <span class="name">Serviço</span>
+                            <span class="price" id="previewService">-</span>
+                        </div>
+                        <div class="service-preview" style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px;">
+                            <span class="name">Profissional</span>
+                            <span class="price" id="previewProfessional" style="color:var(--text);font-weight:400;">-</span>
+                        </div>
+                        <div class="service-preview" style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px;">
+                            <span class="name">Data</span>
+                            <span class="price" id="previewDate" style="color:var(--text);font-weight:400;">-</span>
+                        </div>
+                        <div class="service-preview" style="border-top:1px solid var(--border);padding-top:10px;margin-top:4px;">
+                            <span class="name">Horário</span>
+                            <span class="price" id="previewTime" style="color:var(--text);font-weight:400;">-</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Total</span>
+                            <span style="color:var(--primary);" id="previewTotal">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4><i class="fas fa-clock" style="color:var(--primary);"></i> Horário de funcionamento</h4>
+                        <div class="info-item"><i class="fas fa-calendar-alt"></i> Terça a Sábado: 10h - 20h</div>
+                        <div class="info-item"><i class="fas fa-calendar-alt"></i> Domingo: 11h - 16h</div>
+                        <div class="info-item"><i class="fas fa-calendar-times"></i> Segunda: Fechado</div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4><i class="fas fa-phone" style="color:var(--primary);"></i> Contato</h4>
+                        <div class="info-item"><i class="fab fa-whatsapp"></i> (11) 94444-9999</div>
+                        <div class="info-item"><i class="fas fa-envelope"></i> contato@musehair.com</div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <section class="agendamento-section" id="agendamento">
-        <div class="container">
-            <!-- Progresso -->
-            <div class="agendamento-progress">
-                <div class="step active" data-step="1"><span class="num">1</span><span class="label">Serviço</span></div>
-                <div class="line active"></div>
-                <div class="step" data-step="2"><span class="num">2</span><span class="label">Barbeiro</span></div>
-                <div class="line"></div>
-                <div class="step" data-step="3"><span class="num">3</span><span class="label">Data/Hora</span></div>
-                <div class="line"></div>
-                <div class="step" data-step="4"><span class="num">4</span><span class="label">Confirmação</span></div>
-            </div>
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toastTitle">Sucesso!</div>
+        <div class="toast-msg" id="toastMsg">Agendamento confirmado.</div>
+    </div>
 
-            <!-- Passos -->
-            <div class="agendamento-content">
-                <!-- PASSO 1 -->
-                <div class="step-content active" id="step1">
-                    <h2><i class="fas fa-cut"></i>Escolha o Serviço</h2>
-                    <p class="step-desc">Selecione o serviço que deseja realizar.</p>
-                    <div class="service-grid">
-                        <div class="service-card-ag" data-service="Corte Clássico" data-price="45">
-                            <i class="fas fa-cut"></i><h4>Corte Clássico</h4><p>Tesoura e pente com acabamento impecável.</p><span class="price">R$ 45</span>
-                        </div>
-                        <div class="service-card-ag" data-service="Barba & Navalha" data-price="35">
-                            <i class="fas fa-razor"></i><h4>Barba & Navalha</h4><p>Toalha quente e navalha para acabamento perfeito.</p><span class="price">R$ 35</span>
-                        </div>
-                        <div class="service-card-ag" data-service="Tratamento Capilar" data-price="50">
-                            <i class="fas fa-spa"></i><h4>Tratamento Capilar</h4><p>Hidratação profunda e revitalização.</p><span class="price">R$ 50</span>
-                        </div>
-                        <div class="service-card-ag" data-service="Pacote FLASH" data-price="85">
-                            <i class="fas fa-crown"></i><h4>Pacote FLASH</h4><p>Corte + barba + massagem + tratamento.</p><span class="price">R$ 85</span>
-                        </div>
-                        <div class="service-card-ag" data-service="Combo Corte + Barba" data-price="70">
-                            <i class="fas fa-scissors"></i><h4>Combo Corte + Barba</h4><p>Os dois serviços com desconto.</p><span class="price">R$ 70</span>
-                        </div>
-                    </div>
-                    <div class="step-actions">
-                        <button class="btn btn-primary next-step" disabled id="nextStep1">Próximo →</button>
-                    </div>
-                </div>
+    <script>
+        // ============================================
+        // DADOS
+        // ============================================
+        let currentStep = 1;
+        let bookingData = {};
 
-                <!-- PASSO 2 -->
-                <div class="step-content" id="step2">
-                    <h2><i class="fas fa-user-tie"></i>Escolha o Barbeiro</h2>
-                    <p class="step-desc">Selecione o profissional que irá te atender.</p>
-                    <div class="barber-grid">
-                        <div class="barber-card-ag" data-barber="Rafael Mendes">
-                            <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Rafael" />
-                            <div>
-                                <h4>Rafael Mendes</h4>
-                                <span class="badge">⭐ 4.9</span>
-                                <p>Especialista em cortes clássicos e degradê. 8 anos de experiência.</p>
-                                <div class="tags"><span>Fade</span><span>Navalha</span><span>Barba</span></div>
-                            </div>
-                        </div>
-                        <div class="barber-card-ag" data-barber="Thiago Santos">
-                            <img src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Thiago" />
-                            <div>
-                                <h4>Thiago Santos</h4>
-                                <span class="badge">⭐ 4.8</span>
-                                <p>Especialista em cortes modernos e barba de respeito. 6 anos de experiência.</p>
-                                <div class="tags"><span>Moderno</span><span>Barba</span><span>Pompadour</span></div>
-                            </div>
-                        </div>
-                        <div class="barber-card-ag" data-barber="Carlos Eduardo">
-                            <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Carlos" />
-                            <div>
-                                <h4>Carlos Eduardo</h4>
-                                <span class="badge">⭐ 5.0</span>
-                                <p>Mestre da navalha e tratamentos capilares. 12 anos de experiência.</p>
-                                <div class="tags"><span>Navalha</span><span>Tratamento</span><span>Clássico</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-actions">
-                        <button class="btn btn-outline prev-step">← Voltar</button>
-                        <button class="btn btn-primary next-step" disabled id="nextStep2">Próximo →</button>
-                    </div>
-                </div>
+        // ============================================
+        // NAVEGAÇÃO ENTRE STEPS
+        // ============================================
+        function goToStep(step) {
+            // Validação
+            if (step === 2) {
+                const service = document.getElementById('serviceSelect').value;
+                const date = document.getElementById('dateInput').value;
+                const time = document.getElementById('timeSelect').value;
+                const prof = document.getElementById('professionalSelect').value;
 
-                <!-- PASSO 3 -->
-                <div class="step-content" id="step3">
-                    <h2><i class="fas fa-calendar-alt"></i>Data e Horário</h2>
-                    <p class="step-desc">Escolha o dia e o horário para seu atendimento.</p>
-                    <div class="datetime-grid">
-                        <div class="date-section">
-                            <h4>📅 Data</h4>
-                            <input type="date" id="agDate" />
-                        </div>
-                        <div class="time-section">
-                            <h4>🕐 Horário</h4>
-                            <div class="time-grid" id="timeGrid">
-                                <button class="time-slot" data-time="09:00">09:00</button>
-                                <button class="time-slot" data-time="10:00">10:00</button>
-                                <button class="time-slot" data-time="11:00">11:00</button>
-                                <button class="time-slot" data-time="12:00">12:00</button>
-                                <button class="time-slot" data-time="13:00">13:00</button>
-                                <button class="time-slot" data-time="14:00">14:00</button>
-                                <button class="time-slot" data-time="15:00">15:00</button>
-                                <button class="time-slot" data-time="16:00">16:00</button>
-                                <button class="time-slot" data-time="17:00">17:00</button>
-                                <button class="time-slot" data-time="18:00">18:00</button>
-                                <button class="time-slot" data-time="19:00">19:00</button>
-                                <button class="time-slot" data-time="20:00">20:00</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="step-actions">
-                        <button class="btn btn-outline prev-step">← Voltar</button>
-                        <button class="btn btn-primary next-step" disabled id="nextStep3">Próximo →</button>
-                    </div>
-                </div>
+                if (!service || !date || !time || !prof) {
+                    showToast('Atenção', 'Preencha todos os campos do serviço.');
+                    return;
+                }
 
-                <!-- PASSO 4 -->
-                <div class="step-content" id="step4">
-                    <h2><i class="fas fa-check-circle"></i>Confirmar Agendamento</h2>
-                    <p class="step-desc">Revise os dados e confirme seu agendamento.</p>
-                    <div class="confirmation-card">
-                        <div class="conf-item"><span class="label">Serviço:</span><span class="value" id="confService">-</span></div>
-                        <div class="conf-item"><span class="label">Barbeiro:</span><span class="value" id="confBarber">-</span></div>
-                        <div class="conf-item"><span class="label">Data:</span><span class="value" id="confDate">-</span></div>
-                        <div class="conf-item"><span class="label">Horário:</span><span class="value" id="confTime">-</span></div>
-                        <div class="conf-item"><span class="label">Total:</span><span class="value" id="confPrice">-</span></div>
-                    </div>
-                    <div class="form-group"><label>Seu Nome</label><input type="text" id="clientName" placeholder="Digite seu nome completo" /></div>
-                    <div class="form-group"><label>WhatsApp</label><input type="tel" id="clientPhone" placeholder="(11) 99999-9999" /></div>
-                    <div class="step-actions">
-                        <button class="btn btn-outline prev-step">← Voltar</button>
-                        <button class="btn btn-primary" id="confirmAgendamento"><i class="fas fa-check"></i> Confirmar</button>
-                    </div>
-                    <div id="agFeedback" class="ag-feedback"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+                // Salva dados do step 1
+                bookingData.service = service;
+                bookingData.price = document.getElementById('serviceSelect').selectedOptions[0].dataset.price;
+                bookingData.date = date;
+                bookingData.time = time;
+                bookingData.professional = prof;
 
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand"><a href="index.html" class="logo">FLASH<span>.</span><small>BARBERSHOP</small></a><p>Corte, barba e tradição.</p></div>
-                <div class="footer-col"><h4>Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="agendamento.html">Agendar</a></li><li><a href="sistema.html">Admin</a></li></ul></div>
-            </div>
-            <div class="footer-bottom"><span>&copy; 2026 FLASH Barbershop.</span></div>
-        </div>
-    </footer>
+                updatePreview();
+            }
 
-    <script src="agendamento.js"></script>
+            if (step === 3) {
+                const name = document.getElementById('clientName').value.trim();
+                const phone = document.getElementById('clientPhone').value.trim();
+                const email = document.getElementById('clientEmail').value.trim();
+
+                if (!name || !phone || !email) {
+                    showToast('Atenção', 'Preencha todos os dados pessoais.');
+                    return;
+                }
+
+                bookingData.name = name;
+                bookingData.phone = phone;
+                bookingData.email = email;
+                bookingData.obs = document.getElementById('clientObs').value.trim();
+
+                updateConfirmation();
+            }
+
+            // Muda steps
+            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+
+            // Atualiza indicadores
+            document.querySelectorAll('.step-indicator .step').forEach(el => {
+                el.classList.remove('active', 'done');
+            });
+
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById('step' + i + 'Indicator');
+                if (i < step) indicator.classList.add('done');
+                if (i === step) indicator.classList.add('active');
+            }
+
+            currentStep = step;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================
+        // ATUALIZA PREVIEW
+        // ============================================
+        function updatePreview() {
+            const service = bookingData.service || '-';
+            const price = bookingData.price ? 'R$ ' + parseInt(bookingData.price).toFixed(2) : '-';
+            const prof = bookingData.professional || '-';
+            const date = bookingData.date ? formatDate(bookingData.date) : '-';
+            const time = bookingData.time || '-';
+
+            document.getElementById('previewService').textContent = service;
+            document.getElementById('previewProfessional').textContent = prof;
+            document.getElementById('previewDate').textContent = date;
+            document.getElementById('previewTime').textContent = time;
+            document.getElementById('previewTotal').textContent = price;
+        }
+
+        // ============================================
+        // ATUALIZA CONFIRMAÇÃO
+        // ============================================
+        function updateConfirmation() {
+            document.getElementById('confService').textContent = bookingData.service || '-';
+            document.getElementById('confProfessional').textContent = bookingData.professional || '-';
+            document.getElementById('confDate').textContent = formatDate(bookingData.date) || '-';
+            document.getElementById('confTime').textContent = bookingData.time || '-';
+            document.getElementById('confName').textContent = bookingData.name || '-';
+            document.getElementById('confPhone').textContent = bookingData.phone || '-';
+            document.getElementById('confEmail').textContent = bookingData.email || '-';
+            document.getElementById('confTotal').textContent = bookingData.price ? 'R$ ' + parseInt(bookingData.price)
+                .toFixed(2) : '-';
+        }
+
+        // ============================================
+        // FORMATAR DATA
+        // ============================================
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        }
+
+        // ============================================
+        // CONFIRMAR AGENDAMENTO
+        // ============================================
+        function confirmBooking() {
+            // Mostra loading no botão
+            const btn = document.querySelector('.btn-success');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Confirmando...';
+            btn.disabled = true;
+
+            // Simula envio
+            setTimeout(() => {
+                // Esconde a confirmação e mostra sucesso
+                document.getElementById('confirmationBox').classList.add('hidden');
+                document.getElementById('successBox').classList.remove('hidden');
+
+                // Preenche dados do sucesso
+                document.getElementById('successDate').textContent = formatDate(bookingData.date);
+                document.getElementById('successTime').textContent = bookingData.time;
+                document.getElementById('successService').textContent = bookingData.service;
+                document.getElementById('successProfessional').textContent = bookingData.professional;
+                document.getElementById('successEmail').textContent = bookingData.email;
+
+                // Atualiza indicador
+                document.querySelectorAll('.step-indicator .step').forEach(el => el.classList.remove('active', 'done'));
+                document.getElementById('step3Indicator').classList.add('done');
+
+                showToast('✅ Agendamento confirmado!', 'Um e-mail foi enviado para ' + bookingData.email);
+
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+
+                // Scroll para o topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1500);
+        }
+
+        // ============================================
+        // TOAST
+        // ============================================
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.add('show');
+
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // ============================================
+        // ATUALIZA PREVIEW EM TEMPO REAL
+        // ============================================
+        document.getElementById('serviceSelect').addEventListener('change', updatePreviewFromForm);
+        document.getElementById('professionalSelect').addEventListener('change', updatePreviewFromForm);
+        document.getElementById('dateInput').addEventListener('change', updatePreviewFromForm);
+        document.getElementById('timeSelect').addEventListener('change', updatePreviewFromForm);
+
+        function updatePreviewFromForm() {
+            const service = document.getElementById('serviceSelect').value || '-';
+            const price = document.getElementById('serviceSelect').selectedOptions[0]?.dataset?.price || '0';
+            const prof = document.getElementById('professionalSelect').value || '-';
+            const date = document.getElementById('dateInput').value ? formatDate(document.getElementById('dateInput')
+                .value) : '-';
+            const time = document.getElementById('timeSelect').value || '-';
+
+            document.getElementById('previewService').textContent = service;
+            document.getElementById('previewProfessional').textContent = prof;
+            document.getElementById('previewDate').textContent = date;
+            document.getElementById('previewTime').textContent = time;
+            document.getElementById('previewTotal').textContent = price ? 'R$ ' + parseInt(price).toFixed(2) : 'R$ 0,00';
+
+            // Atualiza bookingData para o preview
+            bookingData.service = service;
+            bookingData.price = price;
+            bookingData.professional = prof;
+            bookingData.date = document.getElementById('dateInput').value;
+            bookingData.time = time;
+        }
+
+        // ============================================
+        // DATA MÍNIMA
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const minDate = today.toISOString().split('T')[0];
+            document.getElementById('dateInput').setAttribute('min', minDate);
+
+            // Pré-preenche data com amanhã
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('dateInput').value = tomorrow.toISOString().split('T')[0];
+            updatePreviewFromForm();
+        });
+
+        console.log('📅 MUSE Hair Atelier - Sistema de agendamento carregado!');
+    </script>
+
 </body>
 </html>

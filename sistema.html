@@ -3,234 +3,935 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FLASH | Sistema</title>
+    <title>Dashboard · MUSE Hair Atelier</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="sistema.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f0eb;
+            --bg-card: #ffffff;
+            --text: #1e1a18;
+            --text-light: #8a7e78;
+            --text-muted: #b5aba5;
+            --primary: #a67c6b;
+            --primary-light: #d4b8ad;
+            --primary-dark: #7a5a4a;
+            --gold: #c4a882;
+            --gold-light: #e8d9cc;
+            --border: #e8e0da;
+            --shadow: 0 4px 30px rgba(166, 124, 107, 0.06);
+            --shadow-hover: 0 12px 50px rgba(166, 124, 107, 0.10);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --success: #5b8c5a;
+            --success-light: #e8f5e9;
+            --warning: #c9a87c;
+            --danger: #c47a7a;
+            --danger-light: #fce4ec;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(245, 240, 235, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.4rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            display: block;
+            margin-top: -4px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-actions .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .header-actions .user .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .header-actions .back-link {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .header-actions .back-link:hover {
+            color: var(--primary);
+        }
+
+        /* DASHBOARD */
+        .dashboard {
+            padding: 30px 0 60px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .dashboard-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .dashboard-header h1 span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .dashboard-header .date {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 22px 24px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card .stat-icon {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .stat-card .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .stat-card .stat-change {
+            font-size: 0.65rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .stat-card .stat-change.up {
+            color: var(--success);
+        }
+        .stat-card .stat-change.down {
+            color: var(--danger);
+        }
+
+        /* TABLES */
+        .section-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-card .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .section-card .section-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .section-card .section-header .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .section-card .section-header .filters select,
+        .section-card .section-header .filters input {
+            padding: 8px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            background: var(--bg);
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .section-card .section-header .filters select:focus,
+        .section-card .section-header .filters input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Tabela */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        table th {
+            text-align: left;
+            padding: 12px 12px 12px 0;
+            font-weight: 600;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        table td {
+            padding: 12px 12px 12px 0;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table tr:hover td {
+            background: rgba(166, 124, 107, 0.02);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.confirmed {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .status-badge.pending {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .status-badge.canceled {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .status-badge.completed {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        .btn-action {
+            padding: 4px 12px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 0.6rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'DM Sans', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-action.confirm {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-action.confirm:hover {
+            opacity: 0.8;
+        }
+        .btn-action.cancel {
+            background: var(--danger);
+            color: #fff;
+        }
+        .btn-action.cancel:hover {
+            opacity: 0.8;
+        }
+        .btn-action.edit {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-action.edit:hover {
+            opacity: 0.8;
+        }
+
+        .btn-action-sm {
+            padding: 2px 10px;
+            font-size: 0.55rem;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--text);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-hover);
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            max-width: 360px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast .toast-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .toast .toast-msg {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-card {
+                padding: 18px;
+            }
+
+            .section-card .section-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .section-card .section-header .filters {
+                flex-direction: column;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            table th,
+            table td {
+                padding: 8px 8px 8px 0;
+            }
+
+            .header-actions .user span {
+                display: none;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.4rem;
+            }
+
+            .stat-card .stat-label {
+                font-size: 0.55rem;
+            }
+        }
+
+        /* Animações */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-    <header id="header" style="display:none;">
+
+    <!-- HEADER -->
+    <header>
         <div class="container header-content">
-            <a href="index.html" class="logo">FLASH<span>.</span><small>SISTEMA</small></a>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#dashboard">Dashboard</a></li>
-                    <li><a href="#agendamentos">Agendamentos</a></li>
-                    <li><a href="#barbeiros">Barbeiros</a></li>
-                    <li><a href="#clientes">Clientes</a></li>
-                    <li><a href="index.html" class="nav-btn-outline">Sair</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
+            <a href="index.html" class="logo">MUSE<span>.</span><small>hair atelier</small></a>
+            <div class="header-actions">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Voltar</a>
+                <div class="user">
+                    <div class="avatar">A</div>
+                    <span>Admin</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- LOGIN -->
-    <section class="login-section" id="login">
-        <div class="container">
-            <div class="login-box">
-                <h2><i class="fas fa-lock"></i>Admin</h2>
-                <p>Faça login para acessar o sistema</p>
-                <div class="form-group"><input type="text" id="loginUser" placeholder="Usuário" value="admin" /></div>
-                <div class="form-group"><input type="password" id="loginPass" placeholder="Senha" value="123456" /></div>
-                <button class="btn btn-primary" id="loginBtn">Entrar</button>
-                <div id="loginFeedback" class="login-feedback"></div>
-            </div>
-        </div>
-    </section>
-
     <!-- DASHBOARD -->
-    <section class="dashboard-section" id="dashboard" style="display:none;">
+    <section class="dashboard">
         <div class="container">
+
+            <!-- Header -->
             <div class="dashboard-header">
-                <span class="section-label"><span class="diamond"></span>Dashboard</span>
-                <h2 class="section-title">Visão <span class="highlight">Geral</span></h2>
-            </div>
-            <div class="dashboard-grid">
-                <div class="dashboard-card"><i class="fas fa-calendar-check"></i><h3>Agendamentos Hoje</h3><span class="dash-number">12</span><p>+3 em relação a ontem</p></div>
-                <div class="dashboard-card"><i class="fas fa-users"></i><h3>Clientes Atendidos</h3><span class="dash-number">2.384</span><p>Total de clientes</p></div>
-                <div class="dashboard-card"><i class="fas fa-star"></i><h3>Avaliação Média</h3><span class="dash-number">4.8 ★</span><p>342 avaliações</p></div>
-                <div class="dashboard-card"><i class="fas fa-dollar-sign"></i><h3>Faturamento Mensal</h3><span class="dash-number">R$ 8.450</span><p>+12% mês passado</p></div>
+                <h1>Dashboard <span>Admin</span></h1>
+                <span class="date"><i class="far fa-calendar-alt"></i> <span id="currentDate"></span></span>
             </div>
 
-            <div class="recent-bookings" id="agendamentos">
-                <h3><i class="fas fa-list"></i>Agendamentos Recentes</h3>
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-number" id="totalBookings">0</div>
+                    <div class="stat-label">Agendamentos</div>
+                    <div class="stat-change up">+12% este mês</div>
+                </div>
+                <div class="stat-card fade-in delay-1">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-number" id="todayBookings">0</div>
+                    <div class="stat-label">Hoje</div>
+                    <div class="stat-change" id="todayStatus">-</div>
+                </div>
+                <div class="stat-card fade-in delay-2">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-number" id="confirmedBookings">0</div>
+                    <div class="stat-label">Confirmados</div>
+                    <div class="stat-change up">+5 esta semana</div>
+                </div>
+                <div class="stat-card fade-in delay-3">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number" id="totalClients">0</div>
+                    <div class="stat-label">Clientes</div>
+                    <div class="stat-change up">+8 novos</div>
+                </div>
+                <div class="stat-card fade-in delay-4">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-number" id="totalRevenue">R$ 0</div>
+                    <div class="stat-label">Faturamento</div>
+                    <div class="stat-change up">+18% este mês</div>
+                </div>
+            </div>
+
+            <!-- Agendamentos de Hoje -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3><i class="fas fa-calendar-day" style="color:var(--primary);"></i> Agendamentos de Hoje</h3>
+                    <div class="filters">
+                        <select id="filterStatus">
+                            <option value="all">Todos</option>
+                            <option value="confirmed">Confirmados</option>
+                            <option value="pending">Pendentes</option>
+                            <option value="completed">Concluídos</option>
+                            <option value="canceled">Cancelados</option>
+                        </select>
+                        <input type="date" id="filterDate" />
+                    </div>
+                </div>
                 <div class="table-wrapper">
                     <table>
                         <thead>
                             <tr>
                                 <th>Cliente</th>
                                 <th>Serviço</th>
-                                <th>Barbeiro</th>
-                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Profissional</th>
                                 <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody id="agendamentosTable">
+                        <tbody id="bookingsTableBody">
+                            <!-- Dinâmico via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div style="text-align:center;padding:20px 0 10px;color:var(--text-light);font-size:0.8rem;" id="noBookings">
+                    Nenhum agendamento encontrado.
+                </div>
+            </div>
+
+            <!-- Últimos Agendamentos -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h3><i class="fas fa-history" style="color:var(--primary);"></i> Últimos Agendamentos</h3>
+                    <span style="font-size:0.8rem;color:var(--text-light);">Os 5 mais recentes</span>
+                </div>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>Carlos Silva</td>
-                                <td>Corte Clássico</td>
-                                <td>Rafael Mendes</td>
-                                <td>15/07/2026 14:00</td>
-                                <td><span class="status confirmed">Confirmado</span></td>
-                                <td>
-                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
-                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
-                                </td>
+                                <th>Cliente</th>
+                                <th>Serviço</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Status</th>
                             </tr>
-                            <tr>
-                                <td>André Oliveira</td>
-                                <td>Barba & Navalha</td>
-                                <td>Thiago Santos</td>
-                                <td>15/07/2026 16:30</td>
-                                <td><span class="status pending">Pendente</span></td>
-                                <td>
-                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
-                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Marcos Pereira</td>
-                                <td>Pacote FLASH</td>
-                                <td>Carlos Eduardo</td>
-                                <td>16/07/2026 10:00</td>
-                                <td><span class="status confirmed">Confirmado</span></td>
-                                <td>
-                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
-                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Lucas Ferreira</td>
-                                <td>Combo Corte + Barba</td>
-                                <td>Rafael Mendes</td>
-                                <td>16/07/2026 13:30</td>
-                                <td><span class="status completed">Finalizado</span></td>
-                                <td>
-                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
-                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Roberto Almeida</td>
-                                <td>Tratamento Capilar</td>
-                                <td>Carlos Eduardo</td>
-                                <td>17/07/2026 09:00</td>
-                                <td><span class="status pending">Pendente</span></td>
-                                <td>
-                                    <button class="btn-sm" onclick="editarAgendamento(this)">Editar</button>
-                                    <button class="btn-sm btn-danger" onclick="cancelarAgendamento(this)">Cancelar</button>
-                                </td>
-                            </tr>
+                        </thead>
+                        <tbody id="recentTableBody">
+                            <!-- Dinâmico via JS -->
                         </tbody>
                     </table>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- BARBEIROS -->
-    <section class="barbers-admin" id="barbeiros" style="display:none;">
-        <div class="container">
-            <div class="barbers-admin-header">
-                <span class="section-label"><span class="diamond"></span>Barbeiros</span>
-                <h2 class="section-title">Nossa <span class="highlight">Equipe</span></h2>
-            </div>
-            <div class="barbers-admin-grid">
-                <div class="barber-admin-card">
-                    <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Rafael" />
-                    <div>
-                        <h4>Rafael Mendes</h4>
-                        <span class="badge-barber">⭐ 4.9</span>
-                        <p>8 anos de experiência. Especialista em cortes clássicos.</p>
-                        <div class="admin-actions">
-                            <button class="btn-sm" onclick="editarBarbeiro(this)">Editar</button>
-                            <button class="btn-sm btn-gray" onclick="verAgenda(this)">Agenda</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="barber-admin-card">
-                    <img src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Thiago" />
-                    <div>
-                        <h4>Thiago Santos</h4>
-                        <span class="badge-barber">⭐ 4.8</span>
-                        <p>6 anos de experiência. Especialista em cortes modernos.</p>
-                        <div class="admin-actions">
-                            <button class="btn-sm" onclick="editarBarbeiro(this)">Editar</button>
-                            <button class="btn-sm btn-gray" onclick="verAgenda(this)">Agenda</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="barber-admin-card">
-                    <img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Carlos" />
-                    <div>
-                        <h4>Carlos Eduardo</h4>
-                        <span class="badge-barber">⭐ 5.0</span>
-                        <p>12 anos de experiência. Mestre da navalha.</p>
-                        <div class="admin-actions">
-                            <button class="btn-sm" onclick="editarBarbeiro(this)">Editar</button>
-                            <button class="btn-sm btn-gray" onclick="verAgenda(this)">Agenda</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <div class="toast-title" id="toastTitle">Sucesso!</div>
+        <div class="toast-msg" id="toastMsg">Ação realizada com sucesso.</div>
+    </div>
 
-    <!-- CLIENTES -->
-    <section class="clientes-section" id="clientes" style="display:none;">
-        <div class="container">
-            <div class="clientes-header">
-                <span class="section-label"><span class="diamond"></span>Clientes</span>
-                <h2 class="section-title">Base de <span class="highlight">Clientes</span></h2>
-            </div>
-            <div class="clientes-grid">
-                <div class="cliente-card">
-                    <div class="cliente-info">
-                        <h4>Carlos Silva</h4>
-                        <p><i class="fas fa-phone"></i> (11) 99999-1111</p>
-                        <p><i class="fas fa-cut"></i> Corte Clássico</p>
-                        <span class="status confirmed">Frequente</span>
-                    </div>
-                </div>
-                <div class="cliente-card">
-                    <div class="cliente-info">
-                        <h4>André Oliveira</h4>
-                        <p><i class="fas fa-phone"></i> (11) 99999-2222</p>
-                        <p><i class="fas fa-razor"></i> Barba & Navalha</p>
-                        <span class="status pending">Ocasional</span>
-                    </div>
-                </div>
-                <div class="cliente-card">
-                    <div class="cliente-info">
-                        <h4>Marcos Pereira</h4>
-                        <p><i class="fas fa-phone"></i> (11) 99999-3333</p>
-                        <p><i class="fas fa-crown"></i> Pacote FLASH</p>
-                        <span class="status confirmed">VIP</span>
-                    </div>
-                </div>
-                <div class="cliente-card">
-                    <div class="cliente-info">
-                        <h4>Lucas Ferreira</h4>
-                        <p><i class="fas fa-phone"></i> (11) 99999-4444</p>
-                        <p><i class="fas fa-scissors"></i> Combo Corte + Barba</p>
-                        <span class="status completed">Frequente</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // ============================================
+        // DADOS MOCK
+        // ============================================
+        let bookings = [{
+            id: 1,
+            client: 'Julia Mendes',
+            service: 'Coloração & Luzes',
+            date: '2026-01-20',
+            time: '10:00',
+            professional: 'Ana Silva',
+            status: 'confirmed',
+            price: 120,
+            phone: '(11) 98888-1111',
+            email: 'julia@email.com'
+        }, {
+            id: 2,
+            client: 'Camila Ribeiro',
+            service: 'Corte & Textura',
+            date: '2026-01-20',
+            time: '14:00',
+            professional: 'Carla Santos',
+            status: 'pending',
+            price: 55,
+            phone: '(11) 97777-2222',
+            email: 'camila@email.com'
+        }, {
+            id: 3,
+            client: 'Ana Paula',
+            service: 'Pacote MUSE',
+            date: '2026-01-19',
+            time: '09:00',
+            professional: 'Mariana Costa',
+            status: 'completed',
+            price: 190,
+            phone: '(11) 96666-3333',
+            email: 'ana@email.com'
+        }, {
+            id: 4,
+            client: 'Marina Santos',
+            service: 'Tratamento Orgânico',
+            date: '2026-01-19',
+            time: '16:00',
+            professional: 'Juliana Lima',
+            status: 'confirmed',
+            price: 60,
+            phone: '(11) 95555-4444',
+            email: 'marina@email.com'
+        }, {
+            id: 5,
+            client: 'Roberta Lima',
+            service: 'Completo',
+            date: '2026-01-21',
+            time: '11:00',
+            professional: 'Ana Silva',
+            status: 'pending',
+            price: 250,
+            phone: '(11) 94444-5555',
+            email: 'roberta@email.com'
+        }, {
+            id: 6,
+            client: 'Fernanda Costa',
+            service: 'Corte & Textura',
+            date: '2026-01-18',
+            time: '15:00',
+            professional: 'Carla Santos',
+            status: 'canceled',
+            price: 55,
+            phone: '(11) 93333-6666',
+            email: 'fernanda@email.com'
+        }, {
+            id: 7,
+            client: 'Patrícia Oliveira',
+            service: 'Coloração & Luzes',
+            date: '2026-01-21',
+            time: '13:00',
+            professional: 'Mariana Costa',
+            status: 'confirmed',
+            price: 120,
+            phone: '(11) 92222-7777',
+            email: 'patricia@email.com'
+        }, {
+            id: 8,
+            client: 'Luciana Ferreira',
+            service: 'Tratamento Orgânico',
+            date: '2026-01-17',
+            time: '10:00',
+            professional: 'Juliana Lima',
+            status: 'completed',
+            price: 60,
+            phone: '(11) 91111-8888',
+            email: 'luciana@email.com'
+        }];
 
-    <footer id="footerAdmin" style="display:none;">
-        <div class="container">
-            <div class="footer-bottom"><span>&copy; 2026 FLASH Barbershop - Sistema</span></div>
-        </div>
-    </footer>
+        // ============================================
+        // FUNÇÕES
+        // ============================================
+        function formatDateBR(dateStr) {
+            if (!dateStr) return '-';
+            const d = new Date(dateStr + 'T00:00:00');
+            return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+        }
 
-    <script src="sistema.js"></script>
+        function getStatusBadge(status) {
+            const labels = {
+                confirmed: 'Confirmado',
+                pending: 'Pendente',
+                completed: 'Concluído',
+                canceled: 'Cancelado'
+            };
+            return `<span class="status-badge ${status}">${labels[status] || status}</span>`;
+        }
+
+        function getStatusActions(booking) {
+            if (booking.status === 'canceled') return '';
+            if (booking.status === 'completed') return '';
+
+            let html = '';
+            if (booking.status === 'pending') {
+                html += `<button class="btn-action confirm btn-action-sm" onclick="updateStatus(${booking.id}, 'confirmed')">Confirmar</button> `;
+            }
+            if (booking.status === 'confirmed') {
+                html +=
+                `<button class="btn-action edit btn-action-sm" onclick="updateStatus(${booking.id}, 'completed')">Concluir</button> `;
+            }
+            html += `<button class="btn-action cancel btn-action-sm" onclick="updateStatus(${booking.id}, 'canceled')">Cancelar</button>`;
+            return html;
+        }
+
+        // ============================================
+        // RENDER TABELAS
+        // ============================================
+        function renderBookings() {
+            const filterStatus = document.getElementById('filterStatus').value;
+            const filterDate = document.getElementById('filterDate').value;
+
+            let filtered = bookings;
+
+            if (filterStatus !== 'all') {
+                filtered = filtered.filter(b => b.status === filterStatus);
+            }
+
+            if (filterDate) {
+                filtered = filtered.filter(b => b.date === filterDate);
+            }
+
+            // Ordena por data/horário
+            filtered.sort((a, b) => {
+                if (a.date !== b.date) return a.date.localeCompare(b.date);
+                return a.time.localeCompare(b.time);
+            });
+
+            const tbody = document.getElementById('bookingsTableBody');
+            const noMsg = document.getElementById('noBookings');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                noMsg.style.display = 'block';
+                return;
+            }
+
+            noMsg.style.display = 'none';
+
+            tbody.innerHTML = filtered.map(b => `
+                    <tr>
+                        <td><strong>${b.client}</strong></td>
+                        <td>${b.service}</td>
+                        <td>${b.time}h</td>
+                        <td>${b.professional}</td>
+                        <td>${getStatusBadge(b.status)}</td>
+                        <td>${getStatusActions(b)}</td>
+                    </tr>
+                `).join('');
+        }
+
+        function renderRecent() {
+            const sorted = [...bookings].sort((a, b) => {
+                if (a.date !== b.date) return b.date.localeCompare(a.date);
+                return b.time.localeCompare(a.time);
+            }).slice(0, 5);
+
+            const tbody = document.getElementById('recentTableBody');
+
+            if (sorted.length === 0) {
+                tbody.innerHTML =
+                '<tr><td colspan="5" style="text-align:center;color:var(--text-light);padding:20px 0;">Nenhum agendamento recente.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = sorted.map(b => `
+                    <tr>
+                        <td><strong>${b.client}</strong></td>
+                        <td>${b.service}</td>
+                        <td>${formatDateBR(b.date)}</td>
+                        <td>${b.time}h</td>
+                        <td>${getStatusBadge(b.status)}</td>
+                    </tr>
+                `).join('');
+        }
+
+        // ============================================
+        // ATUALIZAR ESTATÍSTICAS
+        // ============================================
+        function updateStats() {
+            const total = bookings.length;
+            const today = new Date().toISOString().split('T')[0];
+            const todayBookings = bookings.filter(b => b.date === today);
+            const confirmed = bookings.filter(b => b.status === 'confirmed' || b.status === 'completed');
+
+            const uniqueClients = [...new Set(bookings.map(b => b.client))];
+            const revenue = bookings.filter(b => b.status !== 'canceled').reduce((sum, b) => sum + (b.price || 0), 0);
+
+            document.getElementById('totalBookings').textContent = total;
+            document.getElementById('todayBookings').textContent = todayBookings.length;
+            document.getElementById('confirmedBookings').textContent = confirmed.length;
+            document.getElementById('totalClients').textContent = uniqueClients.length;
+            document.getElementById('totalRevenue').textContent = 'R$ ' + revenue.toFixed(0);
+
+            const todayStatus = document.getElementById('todayStatus');
+            if (todayBookings.length > 0) {
+                todayStatus.textContent = todayBookings.length + ' agendamento(s)';
+                todayStatus.className = 'stat-change up';
+            } else {
+                todayStatus.textContent = 'Nenhum hoje';
+                todayStatus.className = 'stat-change';
+                todayStatus.style.color = 'var(--text-muted)';
+            }
+        }
+
+        // ============================================
+        // ATUALIZAR STATUS
+        // ============================================
+        function updateStatus(id, newStatus) {
+            const booking = bookings.find(b => b.id === id);
+            if (!booking) return;
+
+            const oldStatus = booking.status;
+            booking.status = newStatus;
+
+            showToast(
+                'Status atualizado',
+                `${booking.client} - ${oldStatus} → ${newStatus}`
+            );
+
+            renderBookings();
+            renderRecent();
+            updateStats();
+        }
+
+        // ============================================
+        // TOAST
+        // ============================================
+        function showToast(title, msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.add('show');
+
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // ============================================
+        // DATA ATUAL
+        // ============================================
+        function updateCurrentDate() {
+            const now = new Date();
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('pt-BR', {
+                weekday: 'long',
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+
+        // ============================================
+        // FILTROS
+        // ============================================
+        document.getElementById('filterStatus').addEventListener('change', renderBookings);
+        document.getElementById('filterDate').addEventListener('change', renderBookings);
+
+        // ============================================
+        // INIT
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Data padrão no filtro = hoje
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('filterDate').value = today;
+
+            updateCurrentDate();
+            renderBookings();
+            renderRecent();
+            updateStats();
+
+            console.log('📊 MUSE Hair Atelier - Dashboard carregado com ' + bookings.length + ' agendamentos!');
+        });
+    </script>
+
 </body>
 </html>

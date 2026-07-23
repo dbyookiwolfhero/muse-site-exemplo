@@ -3,21 +3,1673 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FLASH | Barbershop</title>
+    <title>MUSE · Hair Atelier</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* ============================================
+           RESET & VARIÁVEIS
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f5f0eb;
+            --bg-card: #ffffff;
+            --text: #1e1a18;
+            --text-light: #8a7e78;
+            --text-muted: #b5aba5;
+            --primary: #a67c6b;
+            --primary-light: #d4b8ad;
+            --primary-dark: #7a5a4a;
+            --gold: #c4a882;
+            --gold-light: #e8d9cc;
+            --border: #e8e0da;
+            --shadow: 0 4px 30px rgba(166, 124, 107, 0.06);
+            --shadow-hover: 0 12px 50px rgba(166, 124, 107, 0.10);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1da851;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           SCROLLBAR
+           ============================================ */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-light) var(--bg);
+        }
+
+        /* ============================================
+           TIPOGRAFIA
+           ============================================ */
+        .section-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .section-label .line {
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--primary);
+            vertical-align: middle;
+            margin-right: 12px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.4rem;
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .section-title .highlight {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .section-sub {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 400px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           BOTÕES
+           ============================================ */
+        .btn {
+            display: inline-block;
+            padding: 14px 38px;
+            border-radius: 0;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: var(--text);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .btn-sm {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 0;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            transition: var(--transition);
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn-sm:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .nav-btn {
+            padding: 10px 26px;
+            border-radius: 0;
+            background: var(--text);
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'DM Sans', sans-serif;
+            transition: var(--transition);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn-outline {
+            padding: 10px 26px;
+            border-radius: 0;
+            border: 1px solid var(--text);
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.6rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-family: 'DM Sans', sans-serif;
+            transition: var(--transition);
+            background: transparent;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .nav-btn-outline:hover {
+            background: var(--text);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           ANIMAÇÕES
+           ============================================ */
+        .hidden {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        header.scrolled {
+            background: rgba(245, 240, 235, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        header.menu-open {
+            background: rgba(245, 240, 235, 0.98);
+            backdrop-filter: blur(16px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: 1px;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .logo small {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.45rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            display: block;
+            margin-top: -4px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav a {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-light);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        .nav-btn::after,
+        .nav-btn-outline::after {
+            display: none;
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: var(--text);
+            font-size: 1.4rem;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 4px 8px;
+            transition: var(--transition);
+            background: transparent;
+            border: none;
+        }
+
+        .mobile-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 80px;
+            position: relative;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(166, 124, 107, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text .badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 16px;
+            padding: 4px 14px 4px 10px;
+            border-left: 2px solid var(--primary);
+        }
+
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.8rem;
+            font-weight: 700;
+            line-height: 0.95;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .hero-text h1 .line-1 {
+            display: block;
+        }
+
+        .hero-text h1 .line-2 {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .hero-text p {
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 380px;
+            margin-bottom: 32px;
+            line-height: 1.9;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 44px;
+            padding-top: 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-stats .stat h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .hero-stats .stat p {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .hero-image .image-wrapper img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .hero-image .floating-card {
+            position: absolute;
+            bottom: -16px;
+            left: -16px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border);
+        }
+
+        .hero-image .floating-card .icon-box {
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .hero-image .floating-card .info h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .hero-image .floating-card .info p {
+            font-size: 0.5rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-image .deco-line {
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            width: 60px;
+            height: 1px;
+            background: var(--primary-light);
+            opacity: 0.3;
+        }
+
+        .hero-image .deco-dot {
+            position: absolute;
+            bottom: 40px;
+            right: -10px;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        /* ============================================
+           SERVICES
+           ============================================ */
+        .services {
+            padding: 90px 0;
+            background: var(--bg-card);
+        }
+
+        .services-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 48px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            background: var(--bg);
+            padding: 30px 24px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-card .icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .service-card .price {
+            display: inline-block;
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .service-card .price small {
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .service-card .number {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            opacity: 0.2;
+        }
+
+        /* ============================================
+           ABOUT
+           ============================================ */
+        .about {
+            padding: 90px 0;
+            background: var(--bg);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+            height: auto;
+        }
+
+        .about-image .stamp {
+            position: absolute;
+            bottom: -12px;
+            right: -12px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 12px 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border);
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .about-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .about-features li i {
+            color: var(--primary);
+            font-size: 0.7rem;
+        }
+
+        /* ============================================
+           GALLERY
+           ============================================ */
+        .gallery {
+            padding: 90px 0;
+            background: var(--bg-card);
+        }
+
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 42px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            aspect-ratio: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(166, 124, 107, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-item .overlay i {
+            color: #fff;
+            font-size: 1rem;
+            background: var(--primary);
+            padding: 12px;
+            border-radius: 50%;
+            transform: scale(0.8);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay i {
+            transform: scale(1);
+        }
+
+        /* ============================================
+           TESTIMONIALS
+           ============================================ */
+        .testimonials {
+            padding: 90px 0;
+            background: var(--bg);
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .testimonials-header .section-sub {
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 30px 26px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            font-size: 0.7rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-card .author img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+        }
+
+        .testimonial-card .author .name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+
+        .testimonial-card .author .role {
+            font-size: 0.5rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================
+           CTA
+           ============================================ */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--text);
+            color: #fff;
+        }
+
+        .cta-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content .section-label {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-content .section-label .line {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .cta-content h2 span {
+            color: var(--gold-light);
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-bottom: 28px;
+        }
+
+        .cta-content .btn {
+            background: #fff;
+            color: var(--text);
+        }
+
+        .cta-content .btn:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           CONTACT
+           ============================================ */
+        .contact {
+            padding: 90px 0;
+            background: var(--bg-card);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 12px;
+        }
+
+        .contact-info h3 .highlight {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info .info-item i {
+            color: var(--primary);
+            font-size: 0.9rem;
+            width: 18px;
+            margin-top: 2px;
+        }
+
+        .contact-info .info-item .label {
+            font-weight: 500;
+            font-size: 0.6rem;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info .info-item .value {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .contact-form {
+            background: var(--bg);
+            padding: 40px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+
+        .contact-form h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .contact-form .form-sub {
+            color: var(--text-light);
+            margin-bottom: 22px;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 14px;
+        }
+
+        .contact-form .form-group input,
+        .contact-form .form-group select,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            background: #fff;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .contact-form .form-group input:focus,
+        .contact-form .form-group select:focus,
+        .contact-form .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contact-form .form-group input::placeholder,
+        .contact-form .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .contact-form .form-group textarea {
+            height: 110px;
+            resize: vertical;
+        }
+
+        .contact-form .form-group select option {
+            background: #fff;
+            color: var(--text);
+        }
+
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .contact-feedback {
+            margin-top: 14px;
+            padding: 12px 16px;
+            text-align: center;
+            display: none;
+            border-radius: var(--radius-sm);
+        }
+
+        .contact-feedback.success {
+            display: block;
+            border: 1px solid var(--gold);
+            color: var(--primary);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 56px 0 28px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 36px;
+        }
+
+        .footer-brand .logo {
+            color: #fff;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .footer-brand .logo span {
+            color: var(--gold-light);
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            max-width: 300px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .footer-col h4 {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.8rem;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+
+        .footer-col ul a:hover {
+            color: #fff;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.65rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer-socials a {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           FLOATING WHATSAPP - ESTILO MUSE
+           ============================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-float .tooltip {
+            background: var(--text);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            white-space: nowrap;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+            pointer-events: none;
+        }
+
+        .whatsapp-float .tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: 20px;
+            width: 10px;
+            height: 10px;
+            background: var(--text);
+            transform: rotate(45deg);
+        }
+
+        .whatsapp-float:hover .tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .whatsapp-float .whatsapp-btn {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: var(--whatsapp);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            animation: whatsappPulse 2.5s ease-in-out infinite;
+        }
+
+        .whatsapp-float .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--whatsapp);
+            opacity: 0.3;
+            animation: whatsappRing 2.5s ease-in-out infinite;
+        }
+
+        .whatsapp-float .whatsapp-btn:hover {
+            transform: scale(1.1) rotate(-8deg);
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+            background: var(--whatsapp-dark);
+        }
+
+        .whatsapp-float .whatsapp-btn .pulse-dot {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 14px;
+            height: 14px;
+            background: #4caf50;
+            border-radius: 50%;
+            border: 2px solid var(--bg-card);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes whatsappRing {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
+        }
+
+        /* Badge com número */
+        .whatsapp-float .badge-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.5rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-card);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ============================================
+           RESPONSIVIDADE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero-text h1 {
+                font-size: 3.8rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .gallery-item:first-child {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-text p {
+                margin: 0 auto 32px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-image .image-wrapper {
+                max-width: 340px;
+                margin: 0 auto;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-features {
+                justify-items: center;
+            }
+
+            .about-image .stamp {
+                right: 50%;
+                transform: translateX(50%);
+                bottom: -10px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-header,
+            .gallery-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .cta-content h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block !important;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100vh;
+                min-height: 100vh;
+                background: rgba(245, 240, 235, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 18px;
+                transform: translateX(100%);
+                transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+                padding: 80px 30px 40px;
+                z-index: 999;
+                margin: 0;
+                border: none;
+                overflow-y: auto;
+            }
+
+            nav ul.active {
+                transform: translateX(0);
+            }
+
+            nav ul li {
+                width: 100%;
+                max-width: 260px;
+                text-align: center;
+            }
+
+            nav ul a {
+                display: block;
+                width: 100%;
+                font-size: 0.9rem;
+                color: var(--text);
+                padding: 12px 0;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+
+            nav ul a:hover {
+                color: var(--primary);
+                transform: translateX(0);
+            }
+
+            nav ul a::after {
+                display: none;
+            }
+
+            .nav-btn,
+            .nav-btn-outline {
+                display: block;
+                width: 100%;
+                max-width: 260px;
+                padding: 14px 28px;
+                font-size: 0.7rem;
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            nav ul li:last-child {
+                margin-top: 8px;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .cta-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image .floating-card {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                margin-top: 16px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-image .deco-line,
+            .hero-image .deco-dot {
+                display: none;
+            }
+
+            /* WhatsApp - Ajuste mobile */
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .whatsapp-float .whatsapp-btn {
+                width: 54px;
+                height: 54px;
+                font-size: 1.8rem;
+            }
+
+            .whatsapp-float .tooltip {
+                font-size: 0.6rem;
+                padding: 6px 14px;
+            }
+
+            .whatsapp-float .badge-count {
+                width: 18px;
+                height: 18px;
+                font-size: 0.45rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats .stat h3 {
+                font-size: 1.6rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .contact-form {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-content h2 {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 12px 28px;
+                font-size: 0.65rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 260px;
+            }
+
+            nav ul {
+                padding: 60px 20px 30px;
+                gap: 14px;
+            }
+
+            nav ul a {
+                font-size: 0.8rem;
+                padding: 10px 0;
+            }
+
+            .nav-btn,
+            .nav-btn-outline {
+                font-size: 0.6rem;
+                padding: 12px 20px;
+                max-width: 220px;
+            }
+
+            .about-image .stamp {
+                padding: 8px 14px;
+                font-size: 0.7rem;
+                bottom: -8px;
+            }
+
+            .hero-image .floating-card {
+                padding: 10px 14px;
+            }
+
+            .hero-image .floating-card .icon-box {
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
+            }
+
+            .hero-image .floating-card .info h4 {
+                font-size: 0.7rem;
+            }
+
+            /* WhatsApp - Ajuste mobile pequeno */
+            .whatsapp-float {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .whatsapp-float .whatsapp-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 1.6rem;
+            }
+
+            .whatsapp-float .tooltip {
+                display: none;
+            }
+
+            .whatsapp-float .badge-count {
+                width: 16px;
+                height: 16px;
+                font-size: 0.4rem;
+                top: -2px;
+                right: -2px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- ==========================================
+    HEADER
+    ========================================== -->
     <header id="header">
         <div class="container header-content">
-            <a href="index.html" class="logo">FLASH<span>.</span><small>BARBERSHOP</small></a>
+            <a href="index.html" class="logo">MUSE<span>.</span><small>hair atelier</small></a>
             <nav>
                 <ul id="navMenu">
                     <li><a href="#services">Serviços</a></li>
-                    <li><a href="#about">A Flash</a></li>
+                    <li><a href="#about">Sobre</a></li>
                     <li><a href="#gallery">Galeria</a></li>
                     <li><a href="agendamento.html" class="nav-btn">Agendar</a></li>
                     <li><a href="sistema.html" class="nav-btn-outline">Admin</a></li>
@@ -27,170 +1679,272 @@
         </div>
     </header>
 
+    <!-- ==========================================
+    HERO
+    ========================================== -->
     <section class="hero" id="home">
         <div class="container hero-grid">
             <div class="hero-text hidden">
-                <span class="badge"><span class="dot"></span>Corte & Confiança</span>
-                <h1><span class="line-1">Corte &</span><span class="line-2">Confiança</span></h1>
-                <p>A barbearia que respira tradição. Cortes precisos, barbas impecáveis e um atendimento que faz a diferença.</p>
+                <span class="badge">✦ Atelier de beleza</span>
+                <h1>
+                    <span class="line-1">Elegância</span>
+                    <span class="line-2">em cada fio</span>
+                </h1>
+                <p>Um espaço onde técnica e arte se encontram para criar visuais que contam histórias.</p>
                 <div class="hero-buttons">
-                    <a href="agendamento.html" class="btn btn-primary">Agendar Horário</a>
+                    <a href="agendamento.html" class="btn btn-primary">Agendar</a>
                     <a href="#services" class="btn btn-outline">Explorar</a>
                 </div>
                 <div class="hero-stats">
-                    <div class="stat"><h3>12</h3><p>Anos de Estrada</p></div>
+                    <div class="stat"><h3>8+</h3><p>Anos</p></div>
                     <div class="stat"><h3>4.8★</h3><p>Avaliação</p></div>
                     <div class="stat"><h3>2k</h3><p>Clientes</p></div>
                 </div>
             </div>
             <div class="hero-image hidden delay-2">
                 <div class="image-wrapper">
-                    <div class="tattoo-frame"></div>
-                    <div class="tattoo-frame"></div>
-                    <img src="https://plus.unsplash.com/premium_photo-1661645788141-8196a45fb483?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="FLASH Barbershop" />
+                    <div class="deco-line"></div>
+                    <div class="deco-dot"></div>
+                    <img src="https://plus.unsplash.com/premium_photo-1661438191430-656b51362d7a?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MUSE Hair Atelier" />
                     <div class="floating-card">
-                        <div class="icon-box"><i class="fas fa-scissors"></i></div>
-                        <div class="info"><h4>Master Barber</h4><p>Especialista em cortes clássicos</p></div>
+                        <div class="icon-box"><i class="fas fa-feather-alt"></i></div>
+                        <div class="info">
+                            <h4>Expert em cores</h4>
+                            <p>Coloração & Balayage</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ==========================================
+    SERVICES
+    ========================================== -->
     <section class="services" id="services">
         <div class="container">
             <div class="services-header hidden">
-                <div><span class="section-label"><span class="diamond"></span>Serviços</span><h2 class="section-title">O que <span class="highlight">fazemos</span></h2></div>
-                <p class="section-sub" style="max-width:400px;">Cada serviço é feito com precisão e respeito pela tradição da barbearia.</p>
+                <div>
+                    <span class="section-label"><span class="line"></span>Serviços</span>
+                    <h2 class="section-title">O que <span class="highlight">oferecemos</span></h2>
+                </div>
+                <p class="section-sub">Cada serviço é uma experiência pensada para realçar sua beleza.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card hidden delay-1">
-                    <span class="number">01</span><span class="icon"><i class="fas fa-cut"></i></span>
-                    <h3>Corte Clássico</h3><p>Tesoura e pente com acabamento impecável.</p>
-                    <span class="price">R$ 45 <small>+</small></span>
+                    <span class="number">01</span>
+                    <span class="icon"><i class="fas fa-cut"></i></span>
+                    <h3>Corte & Textura</h3>
+                    <p>Movimento, leveza e personalidade em cada fio.</p>
+                    <span class="price">R$ 55 <small>+</small></span>
                     <a href="agendamento.html" class="btn-sm">Agendar</a>
                 </div>
                 <div class="service-card hidden delay-2">
-                    <span class="number">02</span><span class="icon"><i class="fa-solid fa-face-smile"></i></span>
-                    <h3>Barba & Navalha</h3><p>Toalha quente e navalha para acabamento perfeito.</p>
-                    <span class="price">R$ 35 <small>+</small></span>
+                    <span class="number">02</span>
+                    <span class="icon"><i class="fas fa-paint-bucket"></i></span>
+                    <h3>Coloração & Luzes</h3>
+                    <p>Balayage, mechas e tintura com pigmentos exclusivos.</p>
+                    <span class="price">R$ 120 <small>+</small></span>
                     <a href="agendamento.html" class="btn-sm">Agendar</a>
                 </div>
                 <div class="service-card hidden delay-3">
-                    <span class="number">03</span><span class="icon"><i class="fas fa-spa"></i></span>
-                    <h3>Tratamento Capilar</h3><p>Hidratação profunda e revitalização.</p>
-                    <span class="price">R$ 50 <small>+</small></span>
+                    <span class="number">03</span>
+                    <span class="icon"><i class="fas fa-leaf"></i></span>
+                    <h3>Tratamento Orgânico</h3>
+                    <p>Nutrição profunda com produtos naturais e veganos.</p>
+                    <span class="price">R$ 60 <small>+</small></span>
                     <a href="agendamento.html" class="btn-sm">Agendar</a>
                 </div>
                 <div class="service-card hidden delay-4">
-                    <span class="number">04</span><span class="icon"><i class="fas fa-crown"></i></span>
-                    <h3>Pacote FLASH</h3><p>Corte + barba + massagem + tratamento.</p>
-                    <span class="price">R$ 85 <small>+</small></span>
+                    <span class="number">04</span>
+                    <span class="icon"><i class="fas fa-gem"></i></span>
+                    <h3>Pacote MUSE</h3>
+                    <p>Experiência completa: corte + cor + tratamento.</p>
+                    <span class="price">R$ 190 <small>+</small></span>
                     <a href="agendamento.html" class="btn-sm">Agendar</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ==========================================
+    ABOUT
+    ========================================== -->
     <section class="about" id="about">
         <div class="container about-grid">
             <div class="about-image hidden">
-                <img src="https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=800" alt="FLASH" />
-                <div class="stamp">✦ Tradição desde 2012</div>
+                <img src="https://images.unsplash.com/photo-1626383137804-ff908d2753a2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MUSE Hair Atelier" />
+                <div class="stamp">✦ Since 2018</div>
             </div>
             <div class="about-text hidden delay-2">
-                <span class="section-label"><span class="diamond"></span>A Flash</span>
-                <h2 class="section-title">Tesoura & <span class="highlight">Tradição</span></h2>
-                <p>A FLASH nasceu da paixão pela barbearia tradicional. Aqui, cada corte é uma obra de arte, cada barba é esculpida com precisão e cada cliente é tratado com respeito.</p>
+                <span class="section-label"><span class="line"></span>Sobre nós</span>
+                <h2 class="section-title">Beleza com <span class="highlight">propósito</span></h2>
+                <p>Na MUSE, acreditamos que cada cabelo conta uma história. Por isso, criamos um espaço onde técnica e arte se encontram para transformar visuais e elevar autoestima.</p>
                 <ul class="about-features">
-                    <li><i class="fas fa-check"></i>Tradição e respeito</li>
-                    <li><i class="fas fa-check"></i>Barbeiros experientes</li>
-                    <li><i class="fas fa-check"></i>Ambiente autêntico</li>
-                    <li><i class="fas fa-check"></i>Atendimento personalizado</li>
+                    <li><i class="fas fa-check"></i>Profissionais especializadas</li>
+                    <li><i class="fas fa-check"></i>Produtos de alta performance</li>
+                    <li><i class="fas fa-check"></i>Atendimento exclusivo</li>
+                    <li><i class="fas fa-check"></i>Ambiente acolhedor</li>
                 </ul>
             </div>
         </div>
     </section>
 
+    <!-- ==========================================
+    GALLERY
+    ========================================== -->
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="gallery-header hidden">
-                <div><span class="section-label"><span class="diamond"></span>Galeria</span><h2 class="section-title">Nossos <span class="highlight">trabalhos</span></h2></div>
-                <a href="#" class="btn btn-outline" style="padding:12px 28px;">Ver tudo</a>
+                <div>
+                    <span class="section-label"><span class="line"></span>Galeria</span>
+                    <h2 class="section-title">Nossos <span class="highlight">visuais</span></h2>
+                </div>
+                <a href="#" class="btn btn-outline" style="padding:10px 28px;">Ver tudo</a>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item hidden"><img src="https://plus.unsplash.com/premium_photo-1661290481306-4841edd49719?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Corte" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
-                <div class="gallery-item hidden delay-1"><img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Barba" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
-                <div class="gallery-item hidden delay-2"><img src="https://plus.unsplash.com/premium_photo-1661507250205-79ffef5cdeb5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fade" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
-                <div class="gallery-item hidden delay-3"><img src="https://plus.unsplash.com/premium_photo-1661391423903-8b83639a6099?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Navalha" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
-                <div class="gallery-item hidden delay-4"><img src="https://plus.unsplash.com/premium_photo-1661645129806-d4e041937635?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Corte" loading="lazy" /><div class="overlay"><i class="fas fa-plus"></i></div></div>
+                <div class="gallery-item hidden">
+                    <img src="https://plus.unsplash.com/premium_photo-1661578646253-832c14932582?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual 1" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="gallery-item hidden delay-1">
+                    <img src="https://plus.unsplash.com/premium_photo-1661603781997-6349a205221c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual 2" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="gallery-item hidden delay-2">
+                    <img src="https://plus.unsplash.com/premium_photo-1661497681922-ab6295433aa9?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual 3" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="gallery-item hidden delay-3">
+                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=80" alt="Visual 4" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="gallery-item hidden delay-4">
+                    <img src="https://plus.unsplash.com/premium_photo-1676677517012-f1a34d629de4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Visual 5" loading="lazy" />
+                    <div class="overlay"><i class="fas fa-plus"></i></div>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ==========================================
+    TESTIMONIALS
+    ========================================== -->
     <section class="testimonials">
         <div class="container">
             <div class="testimonials-header hidden">
-                <span class="section-label"><span class="diamond"></span>Depoimentos</span>
-                <h2 class="section-title">A <span class="highlight">galera</span> fala</h2>
-                <p class="section-sub">Quem senta na cadeira da FLASH, volta.</p>
+                <span class="section-label"><span class="line"></span>Depoimentos</span>
+                <h2 class="section-title">O que <span class="highlight">dizem</span></h2>
+                <p class="section-sub">Quem experimenta a MUSE, volta sempre.</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card hidden">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>"Melhor barbearia que já conheci. O barbeiro é foda, o ambiente é autêntico e o corte sempre fica perfeito."</blockquote>
-                    <div class="author"><img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Cliente" loading="lazy" /><div><div class="name">Rafael G.</div><div class="role">Cliente desde 2022</div></div></div>
+                    <blockquote>"A MUSE é meu lugar favorito! O cuidado com cada detalhe e o resultado final são impecáveis."</blockquote>
+                    <div class="author">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Cliente" loading="lazy" />
+                        <div>
+                            <div class="name">Julia M.</div>
+                            <div class="role">Cliente desde 2021</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-card hidden delay-2">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>"Atendimento impecável, ambiente raiz e o barbeiro entende exatamente o que você quer."</blockquote>
-                    <div class="author"><img src="https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Cliente" loading="lazy" /><div><div class="name">Thiago S.</div><div class="role">Cliente fiel</div></div></div>
+                    <blockquote>"Fiz balayage e fiquei apaixonada! A profissional é super atenciosa e o ambiente é incrível."</blockquote>
+                    <div class="author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Cliente" loading="lazy" />
+                        <div>
+                            <div class="name">Camila R.</div>
+                            <div class="role">Cliente fiel</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-card hidden delay-3">
                     <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <blockquote>"Levei meu filho para o primeiro corte e foi uma experiência incrível. O barbeiro foi super paciente."</blockquote>
-                    <div class="author"><img src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Cliente" loading="lazy" /><div><div class="name">Bruno A.</div><div class="role">Pai do Lucas</div></div></div>
+                    <blockquote>"Levei minha mãe para um tratamento e ela saiu radiante! Atendimento maravilhoso."</blockquote>
+                    <div class="author">
+                        <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=80" alt="Cliente" loading="lazy" />
+                        <div>
+                            <div class="name">Ana P.</div>
+                            <div class="role">Cliente especial</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ==========================================
+    CTA
+    ========================================== -->
     <section class="cta-section">
-        <div class="container"><div class="cta-content hidden">
-            <span class="section-label"><span class="diamond"></span>Agende Agora</span>
-            <h2>Pronto para <span>mudar</span> o visual?</h2>
-            <p>Agende seu horário e venha experimentar a melhor barbearia da cidade.</p>
-            <a href="agendamento.html" class="btn btn-primary">Agendar Horário</a>
-        </div></div>
+        <div class="container">
+            <div class="cta-content hidden">
+                <span class="section-label"><span class="line"></span>Agende agora</span>
+                <h2>Descubra sua <span>beleza</span></h2>
+                <p>Agende seu horário e viva uma experiência única de cuidado e transformação.</p>
+                <a href="agendamento.html" class="btn">Agendar Horário</a>
+            </div>
+        </div>
     </section>
 
+    <!-- ==========================================
+    CONTACT
+    ========================================== -->
     <section class="contact" id="contact">
         <div class="container contact-grid">
             <div class="contact-info hidden">
-                <span class="section-label"><span class="diamond"></span>Contato</span>
-                <h3>Bora <span class="highlight">trocar</span> ideia</h3>
-                <p>Pronto pra cortar o cabelo ou fazer a barba? Manda uma mensagem.</p>
-                <div class="info-item"><i class="fas fa-map-pin"></i><div><div class="label">Endereço</div><div class="value">Rua do Beco, 101 - Vila Madalena</div></div></div>
-                <div class="info-item"><i class="fas fa-phone-alt"></i><div><div class="label">WhatsApp</div><div class="value">(11) 94444-7777</div></div></div>
-                <div class="info-item"><i class="fas fa-clock"></i><div><div class="label">Horário</div><div class="value">Ter-Sáb: 10h às 20h | Dom: 11h às 16h</div></div></div>
+                <span class="section-label"><span class="line"></span>Contato</span>
+                <h3>Vamos <span class="highlight">conversar</span></h3>
+                <p>Pronta para transformar seu visual? Manda uma mensagem.</p>
+                <div class="info-item">
+                    <i class="fas fa-map-pin"></i>
+                    <div>
+                        <div class="label">Endereço</div>
+                        <div class="value">Rua das Acácias, 150 - Jardim Europa</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <div class="label">WhatsApp</div>
+                        <div class="value">(11) 94444-9999</div>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <div class="label">Horário</div>
+                        <div class="value">Ter-Sáb: 10h às 20h | Dom: 11h às 16h</div>
+                    </div>
+                </div>
             </div>
             <div class="contact-form hidden delay-2">
-                <h3>Agenda <span style="color:var(--blood)">aí</span></h3>
-                <p class="form-sub">Preenche que a gente responde rápido.</p>
+                <h3>Agenda <span style="color:var(--primary)">aqui</span></h3>
+                <p class="form-sub">Preencha que a gente responde rápido.</p>
                 <form id="contactForm">
                     <div class="form-row">
-                        <div class="form-group"><input type="text" id="contactName" placeholder="Seu nome" required /></div>
-                        <div class="form-group"><input type="tel" id="contactPhone" placeholder="WhatsApp" required /></div>
+                        <div class="form-group">
+                            <input type="text" id="contactName" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="contactPhone" placeholder="WhatsApp" required />
+                        </div>
                     </div>
                     <div class="form-group">
                         <select id="contactService" required>
                             <option value="">Escolha o serviço</option>
-                            <option>Corte Clássico</option><option>Barba & Navalha</option>
-                            <option>Tratamento Capilar</option><option>Pacote FLASH</option>
-                            <option>Combo Corte + Barba</option>
+                            <option>Corte & Textura</option>
+                            <option>Coloração & Luzes</option>
+                            <option>Tratamento Orgânico</option>
+                            <option>Pacote MUSE</option>
+                            <option>Completo</option>
                         </select>
                     </div>
-                    <div class="form-group"><textarea id="contactMessage" placeholder="Mensagem..."></textarea></div>
+                    <div class="form-group">
+                        <textarea id="contactMessage" placeholder="Mensagem..."></textarea>
+                    </div>
                     <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Mensagem</button>
                 </form>
                 <div id="contactFeedback" class="contact-feedback"></div>
@@ -198,22 +1952,36 @@
         </div>
     </section>
 
+    <!-- ==========================================
+    FOOTER
+    ========================================== -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand"><a href="index.html" class="logo">FLASH<span>.</span><small>BARBERSHOP</small></a><p>Corte, barba e tradição. A trindade do estilo raiz.</p></div>
-                <div class="footer-col"><h4>Navegação</h4><ul>
-                    <li><a href="#services">Serviços</a></li><li><a href="#about">A Flash</a></li>
-                    <li><a href="#gallery">Galeria</a></li><li><a href="agendamento.html">Agendar</a></li>
-                    <li><a href="sistema.html">Admin</a></li>
-                </ul></div>
-                <div class="footer-col"><h4>Redes</h4><ul>
-                    <li><a href="#"><i class="fab fa-instagram" style="margin-right:8px;"></i>@flash.barber</a></li>
-                    <li><a href="#"><i class="fab fa-whatsapp" style="margin-right:8px;"></i>(11) 94444-7777</a></li>
-                </ul></div>
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">MUSE<span>.</span><small>hair atelier</small></a>
+                    <p>Elegância, técnica e cuidado. Um espaço feito para realçar sua beleza.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#gallery">Galeria</a></li>
+                        <li><a href="agendamento.html">Agendar</a></li>
+                        <li><a href="sistema.html">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Redes</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-instagram" style="margin-right:8px;"></i>@muse.hair</a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp" style="margin-right:8px;"></i>(11) 94444-9999</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 FLASH Barbershop.</span>
+                <span>&copy; 2026 MUSE Hair Atelier.</span>
                 <div class="footer-socials">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-whatsapp"></i></a>
@@ -223,6 +1991,236 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ==========================================
+    FLOATING WHATSAPP
+    ========================================== -->
+    <div class="whatsapp-float" id="whatsappFloat">
+        <div class="tooltip">Fale conosco 💬</div>
+        <a href="https://wa.me/5511944449999?text=Olá! Vim pelo site MUSE Hair Atelier e gostaria de mais informações." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="whatsapp-btn"
+           aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="badge-count">1</span>
+            <span class="pulse-dot"></span>
+        </a>
+    </div>
+
+    <!-- ==========================================
+    SCRIPTS
+    ========================================== -->
+    <script>
+        // ---------- HEADER SCROLL ----------
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ---------- MOBILE MENU ----------
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        if (mobileToggle && navMenu) {
+            const toggleIcon = mobileToggle.querySelector('i');
+
+            function toggleMenu(forceState) {
+                const shouldOpen = forceState !== undefined ? forceState : !navMenu.classList.contains('active');
+
+                if (shouldOpen) {
+                    navMenu.classList.add('active');
+                    document.body.classList.add('menu-open');
+                    header.classList.add('menu-open');
+                    if (toggleIcon) {
+                        toggleIcon.className = 'fas fa-times';
+                        toggleIcon.style.color = 'var(--primary)';
+                    }
+                } else {
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                    header.classList.remove('menu-open');
+                    if (toggleIcon) {
+                        toggleIcon.className = 'fas fa-bars';
+                        toggleIcon.style.color = '';
+                    }
+                }
+            }
+
+            mobileToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            document.querySelectorAll('#navMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMenu(false);
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (navMenu.classList.contains('active')) {
+                    const isClickInside = navMenu.contains(e.target) || mobileToggle.contains(e.target);
+                    if (!isClickInside) {
+                        toggleMenu(false);
+                    }
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    toggleMenu(false);
+                }
+            });
+        }
+
+        // ---------- SCROLL ANIMATION ----------
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -20px 0px'
+        });
+
+        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
+        // ---------- SMOOTH SCROLL ----------
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || targetId === '#home') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ---------- GALLERY LIGHTBOX ----------
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img')?.src;
+                if (imgSrc) {
+                    const lightbox = document.createElement('div');
+                    lightbox.style.cssText = `
+                            position: fixed;
+                            top: 0; left: 0; right: 0; bottom: 0;
+                            background: rgba(0,0,0,0.85);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            z-index: 9999;
+                            cursor: pointer;
+                            padding: 40px;
+                        `;
+                    lightbox.innerHTML = `
+                            <img src="${imgSrc}" style="max-width:90%;max-height:90%;object-fit:contain;border-radius:12px;">
+                            <button style="position:absolute;top:24px;right:32px;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;font-family:sans-serif;transition:transform 0.3s;line-height:1;opacity:0.6;">✕</button>
+                        `;
+                    lightbox.querySelector('button').addEventListener('mouseenter', (e) => {
+                        e.target.style.transform = 'rotate(90deg)';
+                        e.target.style.opacity = '1';
+                    });
+                    lightbox.querySelector('button').addEventListener('mouseleave', (e) => {
+                        e.target.style.transform = 'rotate(0deg)';
+                        e.target.style.opacity = '0.6';
+                    });
+                    lightbox.addEventListener('click', (e) => {
+                        if (e.target === lightbox) lightbox.remove();
+                    });
+                    lightbox.querySelector('button')?.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        lightbox.remove();
+                    });
+                    document.body.appendChild(lightbox);
+                }
+            });
+        });
+
+        // ---------- CONTACT FORM ----------
+        const contactForm = document.getElementById('contactForm');
+        const contactFeedback = document.getElementById('contactFeedback');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('contactName').value.trim();
+                const phone = document.getElementById('contactPhone').value.trim();
+                const service = document.getElementById('contactService').value;
+                const message = document.getElementById('contactMessage').value.trim();
+
+                if (!name || !phone || !service) {
+                    contactFeedback.textContent = '⚠️ Preencha todos os campos obrigatórios.';
+                    contactFeedback.className = 'contact-feedback';
+                    contactFeedback.style.display = 'block';
+                    contactFeedback.style.border = '1px solid var(--primary)';
+                    contactFeedback.style.color = 'var(--primary)';
+                    return;
+                }
+
+                contactFeedback.textContent = '📤 Enviando mensagem...';
+                contactFeedback.className = 'contact-feedback';
+                contactFeedback.style.display = 'block';
+                contactFeedback.style.border = '1px solid var(--gold)';
+                contactFeedback.style.color = 'var(--gold)';
+
+                setTimeout(() => {
+                    contactFeedback.innerHTML = `
+                            ✅ <strong>Mensagem enviada!</strong><br>
+                            <span style="font-size:0.85rem;color:var(--text-light);">
+                                Nome: ${name} | Serviço: ${service}<br>
+                                Entraremos em contato pelo ${phone}.
+                            </span>
+                        `;
+                    contactFeedback.style.border = '1px solid var(--gold)';
+                    contactFeedback.style.color = 'var(--text)';
+                    contactForm.reset();
+                }, 1500);
+            });
+        }
+
+        // ---------- WHATSAPP FLOAT - SCROLL EFFECT ----------
+        const whatsappFloat = document.getElementById('whatsappFloat');
+        let lastScrollY = window.scrollY;
+        let isHidden = false;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            // Esconde ao scrolar para baixo, mostra ao scrolar para cima
+            if (currentScrollY > lastScrollY && currentScrollY > 300) {
+                if (!isHidden) {
+                    whatsappFloat.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                    whatsappFloat.style.transform = 'translateY(80px)';
+                    whatsappFloat.style.opacity = '0';
+                    isHidden = true;
+                }
+            } else if (currentScrollY < lastScrollY || currentScrollY < 300) {
+                if (isHidden) {
+                    whatsappFloat.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                    whatsappFloat.style.transform = 'translateY(0)';
+                    whatsappFloat.style.opacity = '1';
+                    isHidden = false;
+                }
+            }
+            lastScrollY = currentScrollY;
+        });
+
+        console.log('💇‍♀️ MUSE Hair Atelier - Site principal carregado!');
+        console.log('📱 WhatsApp Floating ativo!');
+    </script>
 </body>
 </html>
