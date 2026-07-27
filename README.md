@@ -3,7 +3,7 @@
 > UI Concept de um salão de beleza premium com landing page, agendamento online e dashboard administrativo.
 
 🌐 **Website:** https://www.pablogdev.com.br  
-🚀 **Demo:** https://pablog-7.github.io/muse-hair-atelier/
+🚀 **Demo:** https://pablog-7.github.io/muse-site-exemplo/
 
 ---
 
